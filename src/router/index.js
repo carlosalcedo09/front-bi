@@ -11,6 +11,11 @@ const routes = [
     name: 'RecuperarCuentaView',
     component: () => import(/* webpackChunkName: "about" */ '../views/RecuperarCuenta/RecuperarCuentaView.vue')
   },
+  {
+    path: '/Menu',
+    name: 'MenuView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Menu/MenuView.vue')
+  },
 ]
 
 const router = createRouter({

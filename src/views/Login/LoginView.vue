@@ -29,7 +29,7 @@
                             class="ingtxt"
                         ></v-text-field>
 
-                        <v-btn variant="tonal" class="btn-ingresar" type="button">
+                        <v-btn variant="tonal" class="btn-ingresar" type="button" @click="irmenu">
                             Iniciar Sesión
                         </v-btn>
                         <v-btn variant="text">
@@ -68,6 +68,9 @@
         methods:{
             irrecuperarCuenta(){
                 this.$router.push("/RecuperarCuenta");
+            },
+            irmenu(){
+                this.$router.push("/Menu");
             },
         },
     };

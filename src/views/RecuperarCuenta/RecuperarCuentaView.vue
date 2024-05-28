@@ -23,7 +23,7 @@
                             class="ingtxt"
                         ></v-text-field>
 
-                        <v-btn variant="tonal" class="btn-recuperar" type="button">
+                        <v-btn variant="tonal" class="btn-recuperar" type="button" @click="irValidar">
                             Enviar código
                         </v-btn>
                         <v-btn variant="text" class="btn-cancelar" @click="irlogin">
@@ -61,6 +61,9 @@
         methods:{
             irlogin(){
                 this.$router.push("/");
+            },
+            irValidar(){
+                this.$router.push("/ValidarCodigo")
             },
         },
     }

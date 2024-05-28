@@ -11,7 +11,12 @@
             </v-container>
 
             <v-container class="m_derecha">
-                    <p>ELECCION</p>
+                <v-container class="cajaprincipal1" @click="irReporte">
+                    <p class="bientext">Reporte</p>
+                </v-container>
+                <v-container class="cajaprincipal1" @click="irRecomendaciones">
+                    <p class="bientext">Recomendaciones</p>
+                </v-container>
             </v-container>
 
         </v-container>
@@ -84,6 +89,12 @@ export default {
     methods: {
         irlogin() {
             this.$router.push("/");
+        },
+        irReporte() {
+            this.$router.push("/Reporte");
+        },
+        irRecomendaciones() {
+            this.$router.push("/Recomendaciones");
         },
         expandImage(index) {
             this.expandedImage = index;

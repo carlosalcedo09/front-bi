@@ -12,9 +12,29 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/RecuperarCuenta/RecuperarCuentaView.vue')
   },
   {
+    path: '/ValidarCodigo',
+    name: 'ValidarCodigoView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ValidarCodigo/ValidarCodigoView.vue')
+  },
+  {
+    path: '/RestablecerContraseña',
+    name: 'RestablecerContraseñaView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RestablecerContraseña/RestablecerContraseñaView.vue')
+  },
+  {
     path: '/Menu',
     name: 'MenuView',
     component: () => import(/* webpackChunkName: "about" */ '../views/Menu/MenuView.vue')
+  },
+  {
+    path: '/Reporte',
+    name: 'ReporteView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Reporte/ReporteView.vue')
+  },
+  {
+    path: '/Recomendaciones',
+    name: 'RecomendacionesView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Recomendaciones/RecomendacionesView.vue')
   },
 ]
 

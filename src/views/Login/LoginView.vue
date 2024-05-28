@@ -29,7 +29,7 @@
                             class="ingtxt"
                         ></v-text-field>
 
-                        <v-btn variant="tonal" class="btn-ingresar" type="button" @click="irmenu">
+                        <v-btn variant="tonal" class="btn-ingresar" type="button" @click="iniciarSesion">
                             Iniciar Sesión
                         </v-btn>
                         <v-btn variant="text">
@@ -52,6 +52,33 @@
         </v-container>
 
     </v-container>
+    
+    <v-dialog v-model="dialogError" :width="500">
+      <v-card color="#ec4a4a">
+
+        <v-card-title>
+          <span class="mx-auto">¡Verifique!</span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-alert
+            v-if="mensaje !== ''"
+            color="white"
+            :type="typemsg"
+            outlined>
+            {{ mensaje }}
+          </v-alert>
+        </v-card-text>
+
+      <v-card-actions class="prueba">
+        <v-btn class="btnclose"
+          @click="cerrar">
+          Cerrar
+        </v-btn>
+      </v-card-actions>
+
+      </v-card>
+    </v-dialog>
 </template>
 
 <script>
@@ -59,19 +86,67 @@
         name: 'LoginView',
         data(){
             return{
-
+               usuarios: [],
+               username: "",
+               password: "",
+               mensaje: "",
+               typemsg: "error",
+               dialogError: false
             }
         },
         created(){
-
+        this.obtenerUsuario();
         },
         methods:{
+            obtenerUsuario(){
+                this.$axios.get("/usuarios").then((res)=>{this.usuarios=res.data}).catch((error)=>error)
+            },
+
+            async iniciarSesion(){
+                if(this.username==="" || this.password===""){
+                   this.mensaje= "Faltan completar los campos de inicio de Sesión, por favor completelos.";
+                   this.typemsg= "error";
+                   this.dialogError= true;
+                   return
+                }
+                try{
+                    const response= await this.$axios.post("usuarios/validar",{
+                        username: this.username,
+                        password: this.password,
+                    });
+                    if(response.data.message === 'Autenticación exitosa'){
+                        this.irmenu();
+                        const usuarioE= this.usuarios.find(usuario=> usuario.username===this.username && usuario.password===this.password);
+                        localStorage.setItem('IdPersonal', usuarioE.IdPersonal);
+                    }
+                }catch(error){
+                    if(error.response && error.response.status===401){
+                        this.mensaje= "Credenciales incorrectas, por favor revise el usuario y contraseña ingresado"
+                    }else{
+                        this.mensaje= "Error desconocido al iniciar sesión"
+                    }
+                    this.dialogError= true;
+                }
+            },
+
             irrecuperarCuenta(){
                 this.$router.push("/RecuperarCuenta");
             },
+
+            irregistrarCuenta(){
+                this.$router.push("/RegistrarCuenta")
+            },
+
             irmenu(){
                 this.$router.push("/Menu");
             },
+
+            cerrar(){
+                this.mensaje="";
+                this.username="";
+                this.password="";
+                this.dialogError= false;
+            }
         },
     };
 </script>

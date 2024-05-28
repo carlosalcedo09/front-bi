@@ -19,11 +19,11 @@
                             label="Correo Electrónico"
                             prepend-icon="mdi mdi-account-tie mdi-48px"
                             variant="outlined"
-                            v-model="username"
+                            v-model="correo"
                             class="ingtxt"
                         ></v-text-field>
 
-                        <v-btn variant="tonal" class="btn-recuperar" type="button">
+                        <v-btn variant="tonal" class="btn-recuperar" @click="enviarCodigo">
                             Enviar código
                         </v-btn>
                         <v-btn variant="text" class="btn-cancelar" @click="irlogin">
@@ -45,6 +45,54 @@
         </v-container>
 
     </v-container>
+
+    <v-dialog v-model="dialogError" :width="500">
+      <v-card color="#ec4a4a">
+
+        <v-card-title>
+          <span class="mx-auto">¡Verifique!</span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-alert
+            v-if="mensaje !== ''"
+            color="white"
+            :type="typemsg"
+            outlined>
+            {{ mensaje }}
+          </v-alert>
+        </v-card-text>
+
+      <v-card-actions class="prueba">
+        <v-btn class="btnclose"
+          @click="cerrar">
+          Cerrar
+        </v-btn>
+      </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="dialogCorrect" :width="500">
+        <v-card color="#002854">
+          <v-card-title>
+            <span class="mx-auto">Codigo de verificación</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btncerrar"
+              @click="cerrar">
+              Aceptar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
 </template>
 
 <script>
@@ -52,7 +100,10 @@
         name: 'RecuperarCuentaView',
         data(){
             return{
-
+                typemsg:"error",
+                correo: "",
+                dialogError: false,
+                dialogCorrect: false,
             }
         },
         created(){
@@ -62,7 +113,39 @@
             irlogin(){
                 this.$router.push("/");
             },
-        },
+
+            async enviarCodigo() {
+
+            const emailPattern = /^(.+)@(gmail\.com|ucvvirtual\.edu\.pe)$/;
+
+            // Verifica si la dirección de correo electrónico coincide con el patrón
+            if (!emailPattern.test(this.correo)) {
+            this.mensaje = "La dirección de correo electrónico debe ser de tipo '@gmail.com' o '@ucvvirtual.edu.pe'";
+            this.typemsg = "error";
+            this.dialogError = true;
+            return;
+            }
+            
+            try {
+                const response = await this.$axios.post("/email/enviarCorreo", { email: this.correo });
+                this.mensaje="El codigo de verificacion ha sido enviado correctamente al correo de verificación: " + this.correo;
+                this.typemsg="success"
+                this.correo= "";
+                this.dialogCorrect=true;
+            
+            } catch (error) {
+                this.mensaje="Error al enviar el correo de verificación";
+                console.log(error)
+                this.dialogError=true;
+            }
+            },
+            
+            cerrar(){
+                this.mensaje="";
+                this.correo="";
+                this.dialogError= false;
+            }
+         },
     }
 </script>
 

@@ -4,12 +4,12 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
-/*import axios from './plugins/axios'*/
+import axios from './plugins/axios'
 
 loadFonts()
 
 const app = createApp(App);
-/*app.config.globalProperties.$axios = axios;*/
+app.config.globalProperties.$axios = axios;
 
 app.use(router)
   .use(store)

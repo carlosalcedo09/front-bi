@@ -37,7 +37,7 @@
                             class="ingtxt1"
                         ></v-text-field>
 
-                        <v-btn variant="tonal" class="btn-recuperar" type="button">
+                        <v-btn variant="tonal" class="btn-recuperar" type="button" @click="irlogin">
                             Restablecer Contraseña
                         </v-btn>
                         <v-btn variant="text" class="btn-cancelar" @click="irlogin">

@@ -52,7 +52,7 @@
     background-size: cover;
     width: 267px;
     height: 260px;
-    margin-top: 12px;
+    margin-top: 4px;
 }
 
 .menu_css .nombretxt{
@@ -62,16 +62,17 @@
     margin-top: 17px;
     font-weight: bold;
     cursor: default;
+    margin-bottom: 17px;
 }
 
 .menu_css .btn_cerrar{
-    background-color: red;
+    background-color: #DD0919;
     padding: 10px;
     color: white;
     border-radius: 13px;
     font-weight: bold;
     font-size: 18px;
-    margin-top: 15px;
+    margin-top: 24px;
 }
 
 .menu_css .splide__track{
@@ -146,7 +147,6 @@
 }
 
 .menu_css .cajaprincipal1{
-    background-color: white;
     border-radius: 20px;
     height: 330px;
     width: 400px;
@@ -164,4 +164,62 @@
     padding: 25px;
     font-weight: 500;
     width: 100%;
+}
+
+.menu_css .accesos{
+    width: 350px;
+    height: 190px;
+    padding: 0px;
+    display: ruby-text;
+}
+
+.menu_css .acceso{
+    width: 97px;
+    height: 93px;
+    padding: 0px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 3px solid #DD0919;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.menu_css .gmail{
+    background-image: url('../../components/img/GMAIL.png');
+    background-size: cover;
+}
+
+.menu_css .drive{
+    background-image: url('../../components/img/DRIVE.png');
+    background-size: cover;
+}
+
+.menu_css .myloft{
+    background-image: url('../../components/img/MYLOFT.png');
+    background-size: cover;
+}
+
+.menu_css .trilce{
+    background-image: url('../../components/img/TRILCE.png');
+    background-size: cover;
+}
+
+.menu_css .blackboard{
+    background-image: url('../../components/img/BLACKBOARD.png');
+    background-size: cover;
+}
+
+.menu_css .clementina{
+    background-image: url('../../components/img/CLEMENTINA.png');
+    background-size: cover;
+}
+
+.menu_css .reporte{
+    background-image: url('../../components/img/REPORTE.png');
+    background-size: cover;
+}
+
+.menu_css .recomendaciones{
+    background-image: url('../../components/img/RECOMENDACIONES.png');
+    background-size: cover;
 }

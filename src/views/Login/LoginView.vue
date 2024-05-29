@@ -32,7 +32,7 @@
                         <v-btn variant="tonal" class="btn-ingresar" type="button" @click="irmenu">
                             Iniciar Sesión
                         </v-btn>
-                        <v-btn variant="text">
+                        <v-btn variant="text" @click="irregistrar">
                             ¿No tienes cuenta? Regístrate
                         </v-btn>
                         <v-btn variant="text" @click="irrecuperarCuenta">
@@ -71,6 +71,9 @@
             },
             irmenu(){
                 this.$router.push("/Menu");
+            },
+            irregistrar(){
+                this.$router.push("/RegistrarPersonal");
             },
         },
     };

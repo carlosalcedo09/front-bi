@@ -47,7 +47,7 @@
                                 </v-col>
                             </v-row>
                         </div>
-                        <v-btn variant="tonal" class="btn-recuperar" type="button" @click="irRestablecer">
+                        <v-btn variant="tonal" class="btn-recuperar" type="button" @click="verificarCodigo">
                             Validar código
                         </v-btn>
                         <v-btn variant="text" class="btn-cancelar" @click="irlogin">
@@ -63,6 +63,54 @@
             </v-container>
         </v-container>
     </v-container>
+    
+    <v-dialog v-model="dialogError" :width="500">
+      <v-card color="#ec4a4a">
+
+        <v-card-title>
+          <span class="mx-auto">¡Verifique!</span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-alert
+            v-if="mensaje !== ''"
+            color="white"
+            :type="typemsg"
+            outlined>
+            {{ mensaje }}
+          </v-alert>
+        </v-card-text>
+
+      <v-card-actions class="prueba">
+        <v-btn class="btnclose"
+          @click="cerrar">
+          Cerrar
+        </v-btn>
+      </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="dialogCorrect" :width="500">
+        <v-card color="#002854">
+          <v-card-title>
+            <span class="mx-auto">Codigo de verificación</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btncerrar"
+              @click="irRestablecer">
+              Aceptar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
 </template>
 
 
@@ -75,33 +123,73 @@ export default {
         code2: '',
         code3: '',
         code4: '',
+        codigoCompleto: '',
+        dialogError: false,
+        mensaje: "",
+        typemsg: "",
+        dialogCorrect: false,
         }
     },
     methods: {
-    irlogin() {
-        this.$router.push("/");
-    },
-    irRestablecer() {
-        this.$router.push("/RestablecerContraseña");
-    },
-    moveToNext(index) {
-        const nextField = this.$refs['code' + (index + 1)];
-        if (nextField) {
-            this.$nextTick(() => {
-                nextField.focus();
-            });
-        }
-    },
-    moveToPrevious(index) {
-        if (index > 1) {
-            const prevField = this.$refs['code' + (index - 1)];
-            if (prevField) {
+        irlogin() {
+            this.$router.push("/");
+        },
+
+        irRestablecer() {
+            this.$router.push("/RestablecerContraseña");
+        },
+
+        moveToNext(index) {
+            const nextField = this.$refs['code' + (index + 1)];
+            if (nextField) {
                 this.$nextTick(() => {
-                prevField.focus();
+                    nextField.focus();
                 });
             }
-        }
-    },
+        },
+
+        moveToPrevious(index) {
+            if (index > 1) {
+                const prevField = this.$refs['code' + (index - 1)];
+                if (prevField) {
+                    this.$nextTick(() => {
+                    prevField.focus();
+                    });
+                }
+            }
+        },
+        
+        async verificarCodigo() {
+          if(this.code1!==""&&this.code2!==""&&this.code3!==""&&this.code4!==""){
+            this.codigoCompleto = this.code1 + '' + this.code2 + '' + this.code3 + '' + this.code4;
+            try {
+                const response = await this.$axios.post("/email/verificarCodigo", { code: this.codigoCompleto });
+                // Verificar si la respuesta indica que el código es válido
+                if (response.data.message === 'Código de verificación válido') {
+                    this.mensaje=" El Código de verificación ingresado es válido puede iniciar el restablecimiento de contraseña";
+                    this.typemsg="success";
+                    this.dialogCorrect=true;
+                } else {
+                    this.mensaje='El código de verificación es inválido';
+                    this.typemsg="error";
+                    this.dialogError=true;
+                }
+            } catch (error) {
+                console.error('Error al verificar el código:', error);
+            }  
+
+          }else{
+            this.mensaje= "Por favor complete todos los dígitos del código de verficación",
+            this.typemsg="error";
+            this.dialogError=true;
+          }
+        },
+
+        cerrar(){
+                this.mensaje="";
+                this.dialogError= false;
+        },
+
     },
     watch: {
         code1(newValue) {

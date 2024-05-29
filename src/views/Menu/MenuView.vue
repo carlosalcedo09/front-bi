@@ -7,15 +7,21 @@
                 <v-container class="logo"></v-container>
                 <v-container class="ucvmenu"></v-container>
                 <p class="nombretxt">Mel Kristie Berrospi Paz</p>
+                <v-container class="accesos">
+                    <v-container class="acceso gmail" @click="irGmail"></v-container>
+                    <v-container class="acceso drive" @click="irDrive"></v-container>
+                    <v-container class="acceso myloft" @click="irMyloft"></v-container>
+                    <v-container class="acceso trilce" @click="irTrilce"></v-container>
+                    <v-container class="acceso blackboard" @click="irBlackboard"></v-container>
+                    <v-container class="acceso clementina" @click="irClementina"></v-container>
+                </v-container>
                 <button class="btn_cerrar" @click="irlogin">Cerrar Sesión</button>
             </v-container>
 
             <v-container class="m_derecha">
-                <v-container class="cajaprincipal1" @click="irReporte">
-                    <p class="bientext">Reporte</p>
+                <v-container class="cajaprincipal1 reporte" @click="irReporte">
                 </v-container>
-                <v-container class="cajaprincipal1" @click="irRecomendaciones">
-                    <p class="bientext">Recomendaciones</p>
+                <v-container class="cajaprincipal1 recomendaciones" @click="irRecomendaciones">
                 </v-container>
             </v-container>
 
@@ -101,6 +107,24 @@ export default {
         },
         collapseImage() {
             this.expandedImage = null;
+        },
+        irGmail(){
+            window.open('https://mail.google.com/', '_blank');
+        },
+        irDrive(){
+            window.open('https://drive.google.com/', '_blank');
+        },
+        irMyloft(){
+            window.open('https://app.myloft.xyz/', '_blank');
+        },
+        irTrilce(){
+            window.open('https://trilce.ucv.edu.pe/', '_blank');
+        },
+        irBlackboard(){
+            window.open('https://ucv.blackboard.com/', '_blank');
+        },
+        irClementina(){
+            window.open('https://uvcv.edu.pe/', '_blank');
         },
     },
 };

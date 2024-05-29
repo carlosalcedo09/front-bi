@@ -36,7 +36,6 @@
                             @click:append="toggleConfirmPasswordVisibility"
                             class="ingtxt1"
                         ></v-text-field>
-
                         <v-btn variant="tonal" class="btn-recuperar" @click="restablecer">
                             Restablecer Contraseña
                         </v-btn>

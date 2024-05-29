@@ -7,6 +7,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Login/LoginView.vue')
   },
   {
+    path: '/RegistrarPersonal',
+    name: 'RegistrarPersonalView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RegistrarPersonal/RegistrarPersonalView.vue')
+  },
+  {
     path: '/RecuperarCuenta',
     name: 'RecuperarCuentaView',
     component: () => import(/* webpackChunkName: "about" */ '../views/RecuperarCuenta/RecuperarCuentaView.vue')

@@ -32,7 +32,7 @@
                         <v-btn variant="tonal" class="btn-ingresar" type="button" @click="iniciarSesion">
                             Iniciar Sesión
                         </v-btn>
-                        <v-btn variant="text">
+                        <v-btn variant="text" @click="irregistrar">
                             ¿No tienes cuenta? Regístrate
                         </v-btn>
                         <v-btn variant="text" @click="irrecuperarCuenta">
@@ -133,20 +133,18 @@
                 this.$router.push("/RecuperarCuenta");
             },
 
-            irregistrarCuenta(){
-                this.$router.push("/RegistrarCuenta")
-            },
-
             irmenu(){
                 this.$router.push("/Menu");
             },
-
             cerrar(){
                 this.mensaje="";
                 this.username="";
                 this.password="";
                 this.dialogError= false;
-            }
+            },
+            irregistrar(){
+                this.$router.push("/RegistrarPersonal");
+            },
         },
     };
 </script>

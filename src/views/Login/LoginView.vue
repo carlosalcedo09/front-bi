@@ -54,30 +54,30 @@
     </v-container>
     
     <v-dialog v-model="dialogError" :width="500">
-      <v-card color="#ec4a4a">
+        <v-card color="#ec4a4a">
 
-        <v-card-title>
-          <span class="mx-auto">¡Verifique!</span>
-        </v-card-title>
+            <v-card-title>
+            <span class="mx-auto">¡Verifique!</span>
+            </v-card-title>
 
         <v-card-text>
-          <v-alert
-            v-if="mensaje !== ''"
-            color="white"
-            :type="typemsg"
-            outlined>
-            {{ mensaje }}
-          </v-alert>
-        </v-card-text>
+            <v-alert
+                v-if="mensaje !== ''"
+                color="white"
+                :type="typemsg"
+                outlined>
+                {{ mensaje }}
+            </v-alert>
+            </v-card-text>
 
-      <v-card-actions class="prueba">
-        <v-btn class="btnclose"
-          @click="cerrar">
-          Cerrar
-        </v-btn>
-      </v-card-actions>
+        <v-card-actions class="prueba">
+            <v-btn class="btnclose"
+            @click="cerrar">
+            Cerrar
+            </v-btn>
+        </v-card-actions>
 
-      </v-card>
+        </v-card>
     </v-dialog>
 </template>
 
@@ -86,12 +86,12 @@
         name: 'LoginView',
         data(){
             return{
-               usuarios: [],
-               username: "",
-               password: "",
-               mensaje: "",
-               typemsg: "error",
-               dialogError: false
+                usuarios: [],
+                username: "",
+                password: "",
+                mensaje: "",
+                typemsg: "error",
+                dialogError: false
             }
         },
         created(){
@@ -104,10 +104,10 @@
 
             async iniciarSesion(){
                 if(this.username==="" || this.password===""){
-                   this.mensaje= "Faltan completar los campos de inicio de Sesión, por favor completelos.";
-                   this.typemsg= "error";
-                   this.dialogError= true;
-                   return
+                    this.mensaje= "Faltan completar los campos de inicio de Sesión, por favor completelos.";
+                    this.typemsg= "error";
+                    this.dialogError= true;
+                    return
                 }
                 try{
                     const response= await this.$axios.post("usuarios/validar",{

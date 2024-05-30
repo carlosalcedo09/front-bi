@@ -6,7 +6,7 @@
             <v-container class="m_izquierda">
                 <v-container class="logo"></v-container>
                 <v-container class="ucvmenu"></v-container>
-                <p class="nombretxt">Mel Kristie Berrospi Paz</p>
+                <p class="nombretxt">Carlos Jose Alcedo Javier</p>
                 <v-container class="accesos">
                     <v-container class="acceso gmail" @click="irGmail"></v-container>
                     <v-container class="acceso drive" @click="irDrive"></v-container>

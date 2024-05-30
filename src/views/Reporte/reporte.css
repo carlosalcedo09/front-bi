@@ -1,0 +1,60 @@
+.reporte {
+    margin: 0px;
+    display: flex;
+    padding: 0px;
+    max-width: 100%;
+    height: 100%;
+    font-family: system-ui;
+}
+
+.reporte .todofondo{
+    background-image: url('../../components/img/fondo.jpg'); 
+    background-color: #002854; 
+    background-blend-mode: multiply;
+    max-width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+}
+
+.reporte .cont-blanco{
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 20px;
+    height: 837px;
+    display: flex;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.reporte .cont-izq{
+    background-color: #4e1717;
+    width: 400px;
+    border-radius: 20px;
+}
+
+.reporte .t1{
+    color: aliceblue;
+    position: relative;
+}
+
+
+.reporte .t1::before {
+    content: "";
+    display: inline-block;
+    width: 10px; /* Ajusta el tamaño del círculo */
+    height: 10px; /* Ajusta el tamaño del círculo */
+    background-color: rgb(167, 9, 9); /* Color del círculo */
+    border-radius: 50%; /* Hace que el elemento sea un círculo */
+    margin-right: 10px; /* Espacio entre el círculo y el texto */
+    vertical-align: middle; /* Alineación vertical */
+}
+
+.reporte .spacing{
+    margin-right: 10px;
+}
+
+.reporte .large-icon{
+    font-size: 24px;
+}

@@ -50,6 +50,8 @@
     border-radius: 18px;
     height: 100%;
     display: flex;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .login_css .ucv{
@@ -75,6 +77,12 @@
 .login_css .ingtxt{
     width: 350px;
     color: #002854;
+}
+
+.login_css .ingcontraseña{
+    width: 390px;
+    color: #002854;
+    margin-left: 40px;
 }
 
 .login_css .btn-ingresar{

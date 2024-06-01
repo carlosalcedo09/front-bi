@@ -25,8 +25,10 @@
                             prepend-icon="mdi mdi-lock mdi-36px"
                             variant="outlined"
                             v-model="password"
-                            type="password"
-                            class="ingtxt"
+                            :type="showPassword ? 'text' : 'password'"
+                            :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                            @click:append="togglePasswordVisibility"
+                            class="ingcontraseña"
                         ></v-text-field>
 
                         <v-btn variant="tonal" class="btn-ingresar" type="button" @click="iniciarSesion">
@@ -91,17 +93,20 @@
                 password: "",
                 mensaje: "",
                 typemsg: "error",
-                dialogError: false
+                dialogError: false,
+                showPassword: false,
             }
         },
         created(){
         this.obtenerUsuario();
         },
         methods:{
+            togglePasswordVisibility() {
+                this.showPassword = !this.showPassword;
+            },
             obtenerUsuario(){
                 this.$axios.get("/usuarios").then((res)=>{this.usuarios=res.data}).catch((error)=>error)
             },
-
             async iniciarSesion(){
                 if(this.username==="" || this.password===""){
                     this.mensaje= "Faltan completar los campos de inicio de Sesión, por favor completelos.";
@@ -128,11 +133,9 @@
                     this.dialogError= true;
                 }
             },
-
             irrecuperarCuenta(){
                 this.$router.push("/RecuperarCuenta");
             },
-
             irmenu(){
                 this.$router.push("/Menu");
             },

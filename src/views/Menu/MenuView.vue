@@ -19,9 +19,13 @@
             </v-container>
 
             <v-container class="m_derecha">
-                <v-container class="cajaprincipal1 reporte" @click="irReporte">
+                <v-container class="cajaprincipal1" @click="irReporteGeneral">
+                    <p class="subtitulo">Reporte General</p>
+                    <v-container class="iconogen"></v-container>
                 </v-container>
-                <v-container class="cajaprincipal1 recomendaciones" @click="irRecomendaciones">
+                <v-container class="cajaprincipal1" @click="irReportePersonalizado">
+                    <p class="subtitulo">Reporte Personalizado</p>
+                    <v-container class="iconopers"></v-container>
                 </v-container>
             </v-container>
 
@@ -96,11 +100,11 @@ export default {
         irlogin() {
             this.$router.push("/");
         },
-        irReporte() {
-            this.$router.push("/Reporte");
+        irReporteGeneral() {
+            this.$router.push("/ReporteGeneral");
         },
-        irRecomendaciones() {
-            this.$router.push("/Recomendaciones");
+        irReportePersonalizado() {
+            this.$router.push("/ReportePersonalizado");
         },
         expandImage(index) {
             this.expandedImage = index;

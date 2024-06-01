@@ -32,14 +32,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Menu/MenuView.vue')
   },
   {
-    path: '/Reporte',
-    name: 'ReporteView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Reporte/ReporteView.vue')
+    path: '/ReporteGeneral',
+    name: 'ReporteGeneralView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ReporteGeneral/ReporteGeneralView.vue')
   },
   {
-    path: '/Recomendaciones',
-    name: 'RecomendacionesView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Recomendaciones/RecomendacionesView.vue')
+    path: '/ReportePersonalizado',
+    name: 'ReportePersonalizadoView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ReportePersonalizado/ReportePersonalizadoView.vue')
   },
 ]
 

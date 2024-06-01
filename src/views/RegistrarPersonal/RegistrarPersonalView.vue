@@ -67,7 +67,7 @@
                             prepend-icon="mdi mdi-account mdi-48px"
                             variant="outlined"
                             v-model="usuario.username"
-                            class="ingtxt"
+                            class="ingtxt1"
                         ></v-text-field>
 
                         <v-text-field
@@ -75,7 +75,10 @@
                             prepend-icon="mdi mdi-lock-outline mdi-48px"
                             variant="outlined"
                             v-model="usuario.password"
-                            class="ingtxt"
+                            class="ingcontraseña"
+                            :type="showPassword ? 'text' : 'password'"
+                            :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                            @click:append="togglePasswordVisibility"
                         ></v-text-field>
 
                         <v-text-field
@@ -83,7 +86,10 @@
                             prepend-icon="mdi mdi-lock-check-outline mdi-48px"
                             variant="outlined"
                             v-model="confirmPassword"
-                            class="ingtxt"
+                            class="ingcontraseña"
+                            :type="showConfirmPassword ? 'text' : 'password'"
+                            :append-icon="showConfirmPassword ? 'mdi-eye-off' : 'mdi-eye'"
+                            @click:append="toggleConfirmPasswordVisibility"
                         ></v-text-field>
 
                     </v-container>
@@ -171,6 +177,8 @@
                 personal:"",
                 usuarioRegistrado: "",
                 confirmPassword: "",
+                showPassword: false,
+                showConfirmPassword: false,
                 dniP: "",
                 ultimoID:"",
                 categoriaP:"",
@@ -194,7 +202,12 @@
                     this.obtenerDatos();
                 }, 2000); 
             },
-
+            togglePasswordVisibility() {
+                this.showPassword = !this.showPassword;
+            },
+            toggleConfirmPasswordVisibility() {
+                this.showConfirmPassword = !this.showConfirmPassword;
+            },
             obtenerDatos() {
                 if (this.IdPersonal !== "") {
                     this.$axios.get("/personal/" + this.usuario.IdPersonal)

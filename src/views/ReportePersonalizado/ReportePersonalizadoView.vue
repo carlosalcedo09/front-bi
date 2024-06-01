@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'RecomendacionesView',
+        name: 'ReportePersonalizadoView',
         data(){
             return{
 
@@ -21,4 +21,4 @@
     }
 </script>
 
-<style src='../../views/Recomendaciones/recomendaciones.css'></style>
+<style src='../../views/ReportePersonalizado/reportePersonalizado.css'></style>

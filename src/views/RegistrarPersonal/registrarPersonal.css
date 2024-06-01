@@ -50,6 +50,8 @@
     border-radius: 18px;
     height: 100%;
     display: flex;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .registrarpersonal_css .ucv{
@@ -88,6 +90,22 @@
     color: #002854;
     margin-bottom: -9px;
     margin-left: 10px;
+    margin-right: 10px;
+}
+
+.registrarpersonal_css .ingtxt1{
+    width: 350px;
+    color: #002854;
+    margin-bottom: -9px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.registrarpersonal_css .ingcontraseña{
+    width: 301px;
+    color: #002854;
+    margin-bottom: -9px;
+    margin-left: 25px;
     margin-right: 10px;
 }
 

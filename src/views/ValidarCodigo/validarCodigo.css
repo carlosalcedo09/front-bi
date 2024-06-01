@@ -50,6 +50,8 @@
     border-radius: 18px;
     height: 100%;
     display: flex;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .validarcodigo_css .ucv{

@@ -802,8 +802,10 @@
 }
 
 .reporteGeneral .circular-chart {
-    max-width: 80%;
+    max-width: 100%;
     max-height: 250px;
+    margin: auto;
+    display: block;
 }
 
 .reporteGeneral .circle-bg {
@@ -817,6 +819,148 @@
     stroke-width: 2.8;
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
+}
+
+.reporteGeneral .cont_3{
+    align-content: center;
+    margin-left: 5px;
+    height: 196px;
+    width: 70%;
+}
+
+.reporteGeneral .l12{
+    color: #002854;
+    margin-top: -14px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.reporteGeneral .cont_4{
+    width: 83%;
+    padding-right: 37px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-top: 22px;
+}
+
+.reporteGeneral .texto1{
+    font-size: 5px;
+    fill: #DD0919;
+    font-weight: 500;
+}
+
+.reporteGeneral .texto2{
+    font-size: 4px;
+    fill: #002854;
+}
+
+.reporteGeneral .barra2{
+    display: flex;
+    padding-left: 5px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 8px;
+}
+
+.reporteGeneral .barra3{
+    display: flex;
+    padding-left: 5px;
+    padding-right: 20px;
+    padding-top: 19px;
+    padding-bottom: 8px;
+}
+
+.reporteGeneral .m1{
+    color: #002854
+}
+
+.reporteGeneral .espacio{
+    padding-top: 11px;
+    text-align: right;
+    width: 220px;
+    padding-right: 8px;
+}
+
+.reporteGeneral .c2{
+    margin-left: 14px;
+    color: #002854;
+    font-weight: bold;
+    margin-top: -8px;
+    margin-right: 8px;
+}
+
+.reporteGeneral .p0{
+    padding: 0px;
+}
+
+.reporteGeneral .vertical-progress1{
+    transform: rotate(-90deg);
+    width: 125px;
+    margin-top: 52px;
+    margin-left: -15px;
+}
+
+.reporteGeneral .vertical-progress2{
+    transform: rotate(-90deg);
+    width: 125px;
+    margin-top: 52px;
+    margin-left: -82px;
+}
+
+.reporteGeneral .vertical-progress3{
+    transform: rotate(-90deg);
+    width: 125px;
+    margin-top: 52px;
+    margin-left: -50px;
+}
+
+.reporteGeneral .vertical-progress4{
+    transform: rotate(-90deg);
+    width: 125px;
+    margin-top: 52px;
+    margin-left: -82px;
+    margin-right: -13px;
+}
+
+.reporteGeneral .grlive{
+    height: 134px;
+    border-bottom: 1px solid #7e7e7e;
+    width: 630px;
+    padding-bottom: 0px;
+    display: flex;
+    padding-top: 0px;
+    margin-top: -9px;
+}
+
+.reporteGeneral .cont_a{
+    display: flex;
+    padding: 0px;
+    padding-top: 9px;
+}
+
+.reporteGeneral .j1{
+    margin-left: 84px;
+}
+
+.reporteGeneral .j2{
+    margin-left: 23px;
+}
+
+.reporteGeneral .h{
+    width: 80px;
+    justify-content: center;
+    margin-left: 72px;
+}
+
+.reporteGeneral .j{
+    width: 80px;
+    justify-content: center;
+    margin-left: -39px;
+}
+
+.reporteGeneral .c{
+    width: 40px;
+    justify-content: center;
 }
 
 .color1 { stroke: #DD0919; }

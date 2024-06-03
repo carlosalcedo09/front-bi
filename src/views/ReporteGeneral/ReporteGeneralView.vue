@@ -331,6 +331,127 @@
                                         <v-icon right>mdi-star-outline</v-icon>
                                     </v-container>
                                 </v-container>
+                                <v-container class="cont_a">
+                                    <v-container class="cont_2 h">
+                                        <v-container class="cont_2 c">
+                                            <p>130</p>
+                                        </v-container>
+                                        <v-container class="cont_2 c">
+                                            <p>212</p>
+                                        </v-container>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <v-container class="cont_2 c">
+                                            <p>311</p>
+                                        </v-container>
+                                        <v-container class="cont_2 c">
+                                            <p>552</p>
+                                        </v-container>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <v-container class="cont_2 c">
+                                            <p>344</p>
+                                        </v-container>
+                                        <v-container class="cont_2 c">
+                                            <p>578</p>
+                                        </v-container>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <v-container class="cont_2 c">
+                                            <p>367</p>
+                                        </v-container>
+                                        <v-container class="cont_2 c">
+                                            <p>572</p>
+                                        </v-container>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <v-container class="cont_2 c">
+                                            <p>135</p>
+                                        </v-container>
+                                        <v-container class="cont_2 c">
+                                            <p>283</p>
+                                        </v-container>
+                                    </v-container>
+                                </v-container>
+                                <v-container class="grlive">
+                                    <v-progress-linear
+                                    v-model="porcentaje18"
+                                    color="#DD0919"
+                                    height="39"
+                                    class="vertical-progress1"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje19"
+                                    color="#002854"
+                                    height="39"
+                                    class="vertical-progress2"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje20"
+                                    color="#DD0919"
+                                    height="39"
+                                    class="vertical-progress3"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje21"
+                                    color="#002854"
+                                    height="39"
+                                    class="vertical-progress2"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje22"
+                                    color="#DD0919"
+                                    height="39"
+                                    class="vertical-progress3"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje23"
+                                    color="#002854"
+                                    height="39"
+                                    class="vertical-progress2"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje24"
+                                    color="#DD0919"
+                                    height="39"
+                                    class="vertical-progress3"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje25"
+                                    color="#002854"
+                                    height="39"
+                                    class="vertical-progress2"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje26"
+                                    color="#DD0919"
+                                    height="39"
+                                    class="vertical-progress3"
+                                    ></v-progress-linear>
+                                    <v-progress-linear
+                                    v-model="porcentaje27"
+                                    color="#002854"
+                                    height="39"
+                                    class="vertical-progress4"
+                                    ></v-progress-linear>
+                                </v-container>
+                                <v-container class="cont_2">
+                                    <v-container class="cont_2 h">
+                                        <p>18-25</p>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <p>26-35</p>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <p>36-45</p>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <p>46-55</p>
+                                    </v-container>
+                                    <v-container class="cont_2 j">
+                                        <p>56 o más</p>
+                                    </v-container>
+                                </v-container>
                             </v-container>
                             <v-container class="caja5">
                                 <v-container class="caja6">
@@ -341,6 +462,75 @@
                                         </v-container>
                                         <v-container class="caja1der">
                                             <v-icon right>mdi-check</v-icon>
+                                        </v-container>
+                                    </v-container>
+                                    <v-container class="cont_2">
+                                        <v-container class="espacio">
+                                            <p class="m1">Doctorado</p>
+                                            <p class="m1">Bachiller</p>
+                                            <p class="m1">Maestría</p>
+                                            <p class="m1">Especialización</p>
+                                            <p class="m1">Profesional</p>
+                                            <p class="m1">Técnico</p>
+                                            <p class="m1">Tecnólogo</p>
+                                        </v-container>
+                                        <v-container class="p0">
+                                            <v-container class="barra3">
+                                                <v-progress-linear
+                                                    v-model="porcentaje11"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">108</p>
+                                            </v-container>
+                                            <v-container class="barra2">
+                                                <v-progress-linear
+                                                    v-model="porcentaje12"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">352</p>
+                                            </v-container>
+                                            <v-container class="barra2">
+                                                <v-progress-linear
+                                                    v-model="porcentaje13"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">405</p>
+                                            </v-container>
+                                            <v-container class="barra2">
+                                                <v-progress-linear
+                                                    v-model="porcentaje14"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">471</p>
+                                            </v-container>
+                                            <v-container class="barra2">
+                                                <v-progress-linear
+                                                    v-model="porcentaje15"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">662</p>
+                                            </v-container>
+                                            <v-container class="barra2">
+                                                <v-progress-linear
+                                                    v-model="porcentaje16"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">742</p>
+                                            </v-container>
+                                            <v-container class="barra2">
+                                                <v-progress-linear
+                                                    v-model="porcentaje17"
+                                                    color="#DD0919"
+                                                    height="10">
+                                                </v-progress-linear>
+                                                <p class="c2">744</p>
+                                            </v-container>
                                         </v-container>
                                     </v-container>
                                 </v-container>
@@ -355,35 +545,49 @@
                                         </v-container>
                                     </v-container>
                                     <v-container class="cont_2">
-                                        <v-container>
+                                        <v-container class="cont_3">
                                             <p class="l8">Admin</p>
+                                            <p class="l12">1587</p>
                                             <p class="l9">Financiera</p>
+                                            <p class="l12">384</p>
                                             <p class="l10">Servicios</p>
+                                            <p class="l12">1513</p>
                                         </v-container>
-                                        <v-container>
+                                        <v-container class="cont_4">
                                             <svg viewBox="0 0 36 36" class="circular-chart">
-                                            <path class="circle-bg"
+                                                <path class="circle-bg" 
                                                     d="M18 2.0845
-                                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                            <path :stroke-dasharray="dashArray1"
-                                                    class="circle"
-                                                    :class="color1"
+                                                    a 15.9155 15.9155 0 1 1 0 31.831
+                                                    a 15.9155 15.9155 0 1 1 0 -31.831"/>
+                                                    <path class="color1" 
+                                                stroke-width="4"
+                                                :stroke-dasharray="dashArray1"
+                                                fill="none"
+                                                d="M18 2.0845
+                                                a 15.9155 15.9155 0 1 1 0 31.831
+                                                a 15.9155 15.9155 0 1 1 0 -31.831"/>
+                                                <path class="color2" 
+                                                    stroke-width="4"
+                                                    :stroke-dasharray="dashArray2"
+                                                    fill="none"
+                                                    :stroke-dashoffset="`-${porcentaje8}`"
                                                     d="M18 2.0845
-                                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                            <path :stroke-dasharray="dashArray2"
-                                                    class="circle"
-                                                    :class="color2"
+                                                    a 15.9155 15.9155 0 1 1 0 31.831
+                                                    a 15.9155 15.9155 0 1 1 0 -31.831"/>
+                                                <path class="color3" 
+                                                    stroke-width="4"
+                                                    :stroke-dasharray="dashArray3"
+                                                    fill="none"
+                                                    :stroke-dashoffset="`-${porcentaje8 + porcentaje9}`"
                                                     d="M18 2.0845
-                                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                            <path :stroke-dasharray="dashArray3"
-                                                    class="circle"
-                                                    :class="color3"
-                                                    d="M18 2.0845
-                                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                                    a 15.9155 15.9155 0 1 1 0 31.831
+                                                    a 15.9155 15.9155 0 1 1 0 -31.831"/>
+                                                <text x="18" y="16" text-anchor="middle" dy=".3em" class="texto1">
+                                                    Deserción
+                                                </text>
+                                                <text x="18" y="21" text-anchor="middle" dy=".3em" class="texto2">
+                                                    Total por área
+                                                </text>
                                             </svg>
                                         </v-container>
                                     </v-container>
@@ -415,9 +619,29 @@
                 porcentaje8: 30,
                 porcentaje9: 20,
                 porcentaje10: 50,
+                porcentaje11: 84,
+                porcentaje12: 12,
+                porcentaje13: 37,
+                porcentaje14: 69,
+                porcentaje15: 30,
+                porcentaje16: 20,
+                porcentaje17: 50,
+                porcentaje18: 38,
+                porcentaje19: 84,
+                porcentaje20: 62,
+                porcentaje21: 37,
+                porcentaje22: 69,
+                porcentaje23: 30,
+                porcentaje24: 78,
+                porcentaje25: 89,
+                porcentaje26: 20,
+                porcentaje27: 47,
             }
         },
         created(){
+
+        },
+        mounted() {
 
         },
         methods:{
@@ -427,24 +651,23 @@
         },
         computed: {
             dashArray1() {
-            return `${this.porcentaje8} ${100 - this.porcentaje8}`;
+                return `${this.porcentaje8}, ${100 - this.porcentaje8}`;
             },
             dashArray2() {
-            return `${this.porcentaje9} ${100 - this.porcentaje9} ${this.porcentaje8} ${100 - this.porcentaje8}`;
+                return `${this.porcentaje9}, ${100 - this.porcentaje9}`;
             },
             dashArray3() {
-            const total = this.porcentaje8 + this.porcentaje9;
-            return `${this.porcentaje10} ${100 - this.porcentaje10} ${total} ${100 - total}`;
+                return `${this.porcentaje10}, ${100 - this.porcentaje10}`;
             },
             color1() {
-            return 'color1';
+                return 'color1';
             },
             color2() {
-            return 'color2';
+                return 'color2';
             },
             color3() {
-            return 'color3';
-            }
+                return 'color3';
+            },
         },
     }
 </script>

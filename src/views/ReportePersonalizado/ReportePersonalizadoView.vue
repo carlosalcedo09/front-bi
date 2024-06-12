@@ -512,30 +512,43 @@
                                     <p class="l2">Por Nivel Educativo</p>
                                 </v-container>
                             </v-container>
-                            <v-timeline direction="horizontal" line-inset="12">
-                                <v-timeline-item>
-                                <template v-slot:opposite>
-                                    <p class="txtcirc1">S/. 784,158</p>
-                                </template>
-                                <v-icon class="icontiempo">mdi-chart-box-outline</v-icon>
-                                <p class="txtcirc2">Ventas1</p>
-                                </v-timeline-item>
-                                <v-timeline-item>
-                                <template v-slot:opposite>
-                                    <p class="txtcirc1">S/. 584,852</p>
-                                </template>
-                                <v-icon class="icontiempo">mdi-chart-box-outline</v-icon>
-                                <p class="txtcirc2">Ventas2</p>
-                                </v-timeline-item>
-                                <v-timeline-item>
-                                <template v-slot:opposite>
-                                    <p class="txtcirc1">S/. 746,351</p>
-                                </template>
-                                <v-icon class="icontiempo">mdi-chart-box-outline</v-icon>
-                                <p class="txtcirc2">Ventas3</p>
-                                </v-timeline-item>
-                            </v-timeline>
+                            <v-container class="p0_1">
+                                <v-card class="mx-auto text-center cajalinea" max-width="600" dark>
+                                    <v-card-text class="cardpd">
+                                        <v-sheet color="white">
+                                            <div style="position: relative; height: 204px;">
+                                                <v-sparkline
+                                                    v-for="(line, index) in values"
+                                                    :key="index"
+                                                    :model-value="line"
+                                                    :color="colors[index]"
+                                                    height="100"
+                                                    padding="24"
+                                                    stroke-linecap="round"
+                                                    smooth
+                                                    :labels="[]"
+                                                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin-top: -23px;">
+                                                </v-sparkline>
+                                            </div>
+                                            <div class="labels">
+                                                <span v-for="(label, index) in labels" :key="index" class="label">
+                                                    {{ label }}
+                                                </span>
+                                            </div>
+                                        </v-sheet>
+                                    </v-card-text>
+                                </v-card>
+                            </v-container>
+                            <v-container class="p0_1 adiclc">
+                                <p class="lc1 comlc">Curso 1</p>
+                                <p class="lc2 comlc">Curso 2</p>
+                                <p class="lc3 comlc">Curso 3</p>
+                                <p class="lc4 comlc">Curso 4</p>
+                                <p class="lc5 comlc">Curso 5</p>
+                                <p class="lc6 comlc">Curso 6</p>
+                            </v-container>
                         </v-container>
+
                         <v-container class="caja cajatam7">
                             <v-container class="izqarriba">
                                 <v-container class="caja1izq">
@@ -724,6 +737,18 @@
                 porcentaje26: 30,
                 porcentaje27: 20,
                 porcentaje28: 50,
+                values: [
+                    [210, 446, 675, 510, 590, 610, 400], // LINEA GRIS
+                    [390, 420, 630, 490, 580, 620, 350], // LINEA ROJO
+                    [591, 440, 670, 500, 590, 600, 540], // LINEA AZUL
+                    [689, 430, 660, 480, 570, 610, 230], // LINEA CELESTE
+                    [771, 410, 650, 470, 560, 600, 920], // LINEA ANARANJADA
+                    [881, 420, 640, 460, 550, 590, 110], // LINEA AMARILLO
+                ],
+                // Colores para cada línea
+                colors: ['#7e7e7e', '#DD0919', '#002854', '#13a8a8', '#e9a166', '#f0e54c'],
+                // Etiquetas comunes para todas las líneas
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
             }
         },
         created(){

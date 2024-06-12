@@ -341,6 +341,17 @@
 
                         <v-container class="bloque-flex">
                             <v-container class="b-izq">
+                                <v-container class="cardpd">
+                                    <p class="p15">Exportar en:</p>
+                                    <v-btn class="btn-desc" @click="descargarPDF">
+                                        <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
+                                        PDF
+                                    </v-btn>
+                                    <v-btn class="btn-desc">
+                                        <v-icon left class="iconform">mdi-file-excel-box</v-icon>
+                                        EXCEL
+                                    </v-btn>
+                                </v-container>
                                 <v-container class="caja cajatam3">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
@@ -520,6 +531,7 @@
                                                 <v-sparkline
                                                     v-for="(line, index) in values"
                                                     :key="index"
+                                                    :stroke-width="2"
                                                     :model-value="line"
                                                     :color="colors[index]"
                                                     height="100"
@@ -697,6 +709,8 @@
 </template>
 
 <script>
+    import html2pdf from 'html2pdf.js';
+    import jsPDF from 'jspdf';
     export default {
         name: 'ReportePersonalizadoView',
         data(){
@@ -816,6 +830,21 @@
             },
             clearFilters4() {
                 this.selectedFilters4 = [];
+            },
+            descargarPDF() {
+                const el = this.$el; // Referencia al elemento raíz del componente
+            
+                // Configuración de html2pdf
+                const options = {
+                    margin: 0,
+                    filename: 'Dashboard_ReportePersonalizado.pdf',
+                    image: { type: 'jpeg', quality: 1 },
+                    html2canvas: { scale: 1, width: 1903, height: 919, useCORS: true },
+                    jsPDF: { unit: 'px', format: [1903, 919], orientation: 'landscape' }
+                };
+            
+                // Conversión y descarga del PDF
+                html2pdf().from(el).set(options).save();
             },
         },
         computed:{

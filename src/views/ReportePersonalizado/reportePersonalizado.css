@@ -197,7 +197,8 @@
 
 .reportePersonalizado .cajatam3{
     width: 380px;
-    height: 480px;
+    height: 410px;
+    margin-top: 7px;
 }
 
 .reportePersonalizado .cajatam4{
@@ -625,13 +626,13 @@
 .reportePersonalizado .bloque-flex1{
     display: flex;
     padding: 0px;
-    margin-top: 29px;
+    margin-top: 7px;
 }
 
 .reportePersonalizado .bloque-flex2{
     display: flex;
     padding: 0px;
-    margin-top: 25px;
+    margin-top: 4px;
 }
 
 .reportePersonalizado .colum1{
@@ -753,4 +754,22 @@
     border-radius: 50%;
     margin-right: 10px;
     vertical-align: middle;
+}
+
+.reportePersonalizado .p15{
+    color: #002854;
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: -4px;
+    margin-bottom: 2px;
+}
+
+.reportePersonalizado .btn-desc{
+    font-size: 18px;
+    width: 176px;
+    height: 36px;
+    background-color: #DD0919;
+    color: white;
+    margin-left: 6px;
+    margin-right: 6px;
 }

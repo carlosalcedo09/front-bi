@@ -347,7 +347,7 @@
                                         <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
                                         PDF
                                     </v-btn>
-                                    <v-btn class="btn-desc">
+                                    <v-btn class="btn-desc" @click="descargarEXCEL">
                                         <v-icon left class="iconform">mdi-file-excel-box</v-icon>
                                         EXCEL
                                     </v-btn>
@@ -711,6 +711,7 @@
 <script>
     import html2pdf from 'html2pdf.js';
     import jsPDF from 'jspdf';
+    import XLSX from 'xlsx';
     export default {
         name: 'ReportePersonalizadoView',
         data(){
@@ -845,6 +846,17 @@
             
                 // Conversión y descarga del PDF
                 html2pdf().from(el).set(options).save();
+            },
+            descargarEXCEL() {
+                if (typeof XLSX === 'undefined') {
+                    console.error('La librería XLSX no está cargada correctamente.');
+                    return;
+                }
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.aoa_to_sheet([[]]);
+                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+                const excelFileName = 'BlankWorkbook.xlsx';
+                XLSX.writeFile(wb, excelFileName);
             },
         },
         computed:{

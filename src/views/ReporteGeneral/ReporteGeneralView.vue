@@ -170,7 +170,7 @@
                         </v-container>
                         <v-container class="c-arr-der">
                             <p class="p15">Exportar en:</p>
-                            <v-btn class="btn-desc">
+                            <v-btn class="btn-desc" @click="descargarPDF">
                                 <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
                                 PDF
                             </v-btn>
@@ -605,6 +605,7 @@
 </template>
 
 <script>
+    import html2pdf from 'html2pdf.js';
     export default {
         name: 'ReporteGeneralView',
         data(){
@@ -642,12 +643,27 @@
 
         },
         mounted() {
-
+            
         },
         methods:{
             irmenu(){
                 this.$router.push("/Menu");
             },
+            descargarPDF() {
+                const el = this.$el; // Referencia al elemento raíz del componente
+            
+                // Configuración de html2pdf
+                const options = {
+                    margin: 0,
+                    filename: 'Dashboard_ReporteGeneral.pdf',
+                    image: { type: 'jpeg', quality: 1 },
+                    html2canvas: { scale: 1, width: 1903, height: 919, useCORS: true },
+                    jsPDF: { unit: 'px', format: [1903, 919], orientation: 'landscape' }
+                };
+            
+                // Conversión y descarga del PDF
+                html2pdf().from(el).set(options).save();
+            }
         },
         computed: {
             dashArray1() {

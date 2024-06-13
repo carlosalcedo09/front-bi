@@ -339,81 +339,31 @@
                                 <v-container class="caja6">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
-                                            <p class="l1">Deserciones Totales</p>
-                                            <p class="l2">Por Nivel Educativo</p>
+                                            <p class="l1">Cantidad de Estudiante</p>
+                                            <p class="l2">Por Categorización</p>
                                         </v-container>
                                         <v-container class="caja1der">
                                             <v-icon right>mdi-check</v-icon>
                                         </v-container>
                                     </v-container>
                                     <v-container class="cont_2">
-                                        <v-container class="espacio">
-                                            <p class="m1">Doctorado</p>
-                                            <p class="m1">Bachiller</p>
-                                            <p class="m1">Maestría</p>
-                                            <p class="m1">Especialización</p>
-                                            <p class="m1">Profesional</p>
-                                            <p class="m1">Técnico</p>
-                                            <p class="m1">Tecnólogo</p>
-                                        </v-container>
-                                        <v-container class="p0">
-                                            <v-container class="barra3">
-                                                <v-progress-linear
-                                                    v-model="porcentaje11"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">108</p>
+                                           <!-- Categorías -->
+                                            <v-container class="espacio">
+                                                <v-container v-for="(categoria, index) in estudiantesCategorias" :key="index" class="especialA">
+                                                    <p class="m1">{{ categoria.categoria }}</p>
+                                                </v-container>
                                             </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje12"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">352</p>
+                                            <!-- Barras y cantidades -->
+                                            <v-container class="p0">
+                                                <v-container v-for="(categoria, index) in estudiantesCategorias" :key="index" class="barra2">
+                                                    <v-progress-linear
+                                                        v-model="categoria.porcentaje"
+                                                        color="#DD0919"
+                                                        height="20">
+                                                    </v-progress-linear>
+                                                    <p class="c2">{{ categoria.cantidad_estudiantes }}</p>
+                                                </v-container>
                                             </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje13"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">405</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje14"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">471</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje15"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">662</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje16"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">742</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje17"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">744</p>
-                                            </v-container>
-                                        </v-container>
                                     </v-container>
                                 </v-container>
                                 <v-container class="caja7">
@@ -507,6 +457,7 @@
                 estudiantesConoNorte:'',
                 notasCursos: '',
                 detalleGenero: '',
+                estudiantesCategorias: '',
                 porcentajeS: '',
                 porcentajeC: '',
                 porcentajeV: '',
@@ -592,6 +543,10 @@
                 const responseDetalleGenero= await this.$axios.get('/desempeno/detalleGenero')
                 this.detalleGenero= responseDetalleGenero.data;
                 this.porcentajeGenero();
+
+                const responseEstudianteCategoria= await this.$axios.get('/desempeno/estudiantesCategoria')
+                this.estudiantesCategorias= responseEstudianteCategoria.data;
+                console.log(this.estudiantesCategorias)
 
                 // Asignar los valores de género a las propiedades correspondientes
                 const femeninoObj = this.estudiantesPorGenero.find(item => item.Genero === 'Femenino');

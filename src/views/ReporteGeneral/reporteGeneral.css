@@ -858,7 +858,7 @@
     display: flex;
     padding-left: 5px;
     padding-right: 20px;
-    padding-top: 0px;
+    padding-top: 15px;
     padding-bottom: 8px;
 }
 
@@ -875,7 +875,7 @@
 }
 
 .reporteGeneral .espacio{
-    padding-top: 11px;
+    padding-top: 0px;
     text-align: right;
     width: 220px;
     padding-right: 8px;
@@ -892,7 +892,9 @@
 .reporteGeneral .p0{
     padding: 0px;
 }
-
+.especialA{
+    padding: 5px !important;
+}
 .reporteGeneral .vertical-progress1{
     transform: rotate(-90deg);
     width: 125px;
@@ -961,6 +963,10 @@
 .reporteGeneral .c{
     width: 40px;
     justify-content: center;
+}
+
+.categoria-container {
+    margin-bottom: 10px; /* Ajusta este valor según el espacio que desees */
 }
 
 .color1 { stroke: #DD0919; }

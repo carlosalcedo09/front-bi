@@ -51,7 +51,7 @@ const router = createRouter({
   routes
 });
 
-// Guardia de navegación global
+// Guardia de navegación global xd
 router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('IdPersonal');
   if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {

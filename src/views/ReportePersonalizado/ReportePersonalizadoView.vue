@@ -345,9 +345,18 @@
 
                         <v-container class="bloque-flex">
                             <v-container class="b-izq">
-                                <v-container class="caja cajatam3"
-                                    @mouseover="showMessage(0, 'chatbot2')"
-                                    @mouseleave="hideMessage('chatbot2')">
+                                <v-container class="cardpd">
+                                    <p class="p15">Exportar en:</p>
+                                    <v-btn class="btn-desc" @click="descargarPDF">
+                                        <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
+                                        PDF
+                                    </v-btn>
+                                    <v-btn class="btn-desc" @click="descargarEXCEL">
+                                        <v-icon left class="iconform">mdi-file-excel-box</v-icon>
+                                        EXCEL
+                                    </v-btn>
+                                </v-container>
+                                <v-container class="caja cajatam3">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
                                             <p class="l1">Deserciones Totales</p>
@@ -532,6 +541,7 @@
                                                 <v-sparkline
                                                     v-for="(line, index) in values"
                                                     :key="index"
+                                                    :stroke-width="2"
                                                     :model-value="line"
                                                     :color="colors[index]"
                                                     height="100"

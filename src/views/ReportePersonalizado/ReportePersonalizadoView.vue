@@ -143,7 +143,9 @@
                     <v-container class="bloque-flex">
 
                         <v-container class="bloque-izquierda">
-                            <v-container class="caja cajatam1">
+                            <v-container class="caja cajatam1"
+                                @mouseover="showMessage(0, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-container class="p0">
                                     <v-progress-circular
                                         :model-value="100"
@@ -204,7 +206,9 @@
                                     </v-progress-circular>
                                 </v-container>
                             </v-container>
-                            <v-container class="caja cajatam2">
+                            <v-container class="caja cajatam2"
+                                @mouseover="showMessage(1, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-container class="izqarriba">
                                     <v-container class="caja1izq">
                                         <p class="l1">Número de Deserciones</p>
@@ -341,7 +345,9 @@
 
                         <v-container class="bloque-flex">
                             <v-container class="b-izq">
-                                <v-container class="caja cajatam3">
+                                <v-container class="caja cajatam3"
+                                    @mouseover="showMessage(0, 'chatbot2')"
+                                    @mouseleave="hideMessage('chatbot2')">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
                                             <p class="l1">Deserciones Totales</p>
@@ -423,7 +429,9 @@
                                 </v-container>
                             </v-container>
                             <v-container class="b-der">
-                                <v-container class="caja cajatam4">
+                                <v-container class="caja cajatam4"
+                                    @mouseover="showMessage(1, 'chatbot2')"
+                                    @mouseleave="hideMessage('chatbot2')">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
                                             <p class="l1">Deserciones Totales</p>
@@ -467,7 +475,9 @@
                                         <p class="genC x">Cartera</p>
                                     </v-container>
                                 </v-container>
-                                <v-container class="caja cajatam5">
+                                <v-container class="caja cajatam5"
+                                    @mouseover="showMessage(2, 'chatbot2')"
+                                    @mouseleave="hideMessage('chatbot2')">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
                                             <p class="l1">Deserciones Totales</p>
@@ -505,7 +515,9 @@
                     </v-container>
 
                     <v-container class="bloque-flex">
-                        <v-container class="caja cajatam6">
+                        <v-container class="caja cajatam6"
+                            @mouseover="showMessage(2, 'chatbot1')"
+                            @mouseleave="hideMessage('chatbot1')">
                             <v-container class="izqarriba">
                                 <v-container class="caja1izq">
                                     <p class="l1">Deserciones Totales</p>
@@ -549,7 +561,9 @@
                             </v-container>
                         </v-container>
 
-                        <v-container class="caja cajatam7">
+                        <v-container class="caja cajatam7"
+                            @mouseover="showMessage(3, 'chatbot2')"
+                            @mouseleave="hideMessage('chatbot2')">
                             <v-container class="izqarriba">
                                 <v-container class="caja1izq">
                                     <p class="l1">Deserciones Totales</p>
@@ -608,7 +622,9 @@
                                 <p class="genC x">Cartera</p>
                             </v-container>
                         </v-container>
-                        <v-container class="caja cajatam8">
+                        <v-container class="caja cajatam8"
+                            @mouseover="showMessage(4, 'chatbot2')"
+                            @mouseleave="hideMessage('chatbot2')">
                             <v-container class="izqarriba">
                                 <v-container class="caja1izq">
                                     <p class="l1">Deserciones Totales</p>
@@ -693,12 +709,30 @@
 
         </v-container>
 
+        <ChatBot1View
+            v-if="currentMessage1 !== null"
+            :message="containers1[currentMessage1].message"
+            :visible="messageVisible1"
+        />
+
+        <ChatBot2View
+            v-if="currentMessage2 !== null"
+            :message="containers2[currentMessage2].message"
+            :visible="messageVisible2"
+        />
+
     </v-container>
 </template>
 
 <script>
+    import ChatBot1View from '../ChatBot1/ChatBot1View.vue';
+    import ChatBot2View from '../ChatBot2/ChatBot2View.vue';
     export default {
         name: 'ReportePersonalizadoView',
+        components: {
+            ChatBot1View,
+            ChatBot2View,
+        },
         data(){
             return{
                 filters1: ['Filter 1', 'Filter 2', 'Filter 3'],
@@ -749,6 +783,22 @@
                 colors: ['#7e7e7e', '#DD0919', '#002854', '#13a8a8', '#e9a166', '#f0e54c'],
                 // Etiquetas comunes para todas las líneas
                 labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'],
+                containers1: [
+                    {message: 'Mensaje del chatbot para el Contenedor 1' },
+                    {message: 'Mensaje del chatbot para el Contenedor 2' },
+                    {message: 'Mensaje del chatbot para el Contenedor 3' },
+                ],
+                containers2: [
+                    {message: 'Mensaje del chatbot para el Contenedor 4' },
+                    {message: 'Mensaje del chatbot para el Contenedor 5' },
+                    {message: 'Mensaje del chatbot para el Contenedor 6' },
+                    {message: 'Mensaje del chatbot para el Contenedor 7' },
+                    {message: 'Mensaje del chatbot para el Contenedor 8' },
+                ],
+                currentMessage1: null,
+                messageVisible1: false,
+                currentMessage2: null,
+                messageVisible2: false,
             }
         },
         created(){
@@ -816,6 +866,22 @@
             },
             clearFilters4() {
                 this.selectedFilters4 = [];
+            },
+            showMessage(index, chatbot) {
+                if (chatbot === 'chatbot1') {
+                    this.currentMessage1 = index;
+                    this.messageVisible1 = true;
+                } else if (chatbot === 'chatbot2') {
+                    this.currentMessage2 = index;
+                    this.messageVisible2 = true;
+                }
+            },
+            hideMessage(chatbot) {
+                if (chatbot === 'chatbot1') {
+                    this.messageVisible1 = false;
+                } else if (chatbot === 'chatbot2') {
+                    this.messageVisible2 = false;
+                }
             },
         },
         computed:{

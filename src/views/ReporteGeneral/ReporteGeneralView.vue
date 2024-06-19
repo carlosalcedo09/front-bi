@@ -164,7 +164,7 @@
                         </v-container>
                         <v-container class="c-arr-der">
                             <p class="p15">Exportar en:</p>
-                            <v-btn class="btn-desc">
+                            <v-btn class="btn-desc" @click="descargarPDF">
                                 <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
                                 PDF
                             </v-btn>
@@ -314,7 +314,7 @@
                                     </v-container>
                                 </v-container>
                                 <v-container class="grlive">
-                                    <v-container v-for="(curso, index) in notasCursos" :key="'porcentaje' + index">
+                                    <v-container v-for="(curso, index) in notasCursos" :key="'porcentaje' + index" class="especial">
                                         <v-progress-linear
                                         v-model="curso.PorcentajeNotasMenor14"
                                         color="#DD0919"
@@ -329,9 +329,9 @@
                                         ></v-progress-linear>
                                     </v-container>
                                 </v-container>
-                                <v-container  v-for="(curso, index) in notasCursos" :key="index" class="cont_2">
-                                    <v-container class="cont_2 h">
-                                        <p>{{ curso.NombreCurso }}</p>
+                                <v-container  class="cont_2">
+                                    <v-container class="h">
+                                            <p v-for="(curso, index) in cursos" :key="index" class="ab p-spacing">{{ curso }}</p>
                                     </v-container>
                                 </v-container>
                             </v-container>
@@ -350,7 +350,7 @@
                                            <!-- Categorías -->
                                             <v-container class="espacio">
                                                 <v-container v-for="(categoria, index) in estudiantesCategorias" :key="index" class="especialA">
-                                                    <p class="m1">{{ categoria.categoria }}</p>
+                                                    <p class="m1">{{ categoria.Categoria }}</p>
                                                 </v-container>
                                             </v-container>
                                             <!-- Barras y cantidades -->
@@ -437,6 +437,9 @@
 </template>
 
 <script>
+    import jsPDF from 'jspdf';
+    import html2canvas from 'html2canvas';
+
     export default {
         name: 'ReporteGeneralView',
         data(){
@@ -466,33 +469,14 @@
                 porcentajeN: '',
                 porcentajeFemenino: '',
                 porcentajeMasculino: '',
-                porcentaje5: 84,
-                porcentaje6: 37,
-                porcentaje7: 84,
-                porcentaje11: 84,
-                porcentaje12: 12,
-                porcentaje13: 37,
-                porcentaje14: 69,
-                porcentaje15: 30,
-                porcentaje16: 20,
-                porcentaje17: 50,
-                porcentaje18: 38,
-                porcentaje19: 84,
-                porcentaje20: 62,
-                porcentaje21: 37,
-                porcentaje22: 69,
-                porcentaje23: 30,
-                porcentaje24: 78,
-                porcentaje25: 89,
-                porcentaje26: 20,
-                porcentaje27: 47,
+                cursos: ['C. Comunicativa', 'F. Programación', 'I. Sistemas','Matemática I','P. Lógico','Tutoría I']
             }
         },
         created(){
-            this.CargarDatosEstudiantes()
+            this.CargarDatosEstudiantes();
         },
         mounted() {
-
+            
         },
         methods:{
             irmenu(){
@@ -543,11 +527,9 @@
                 const responseDetalleGenero= await this.$axios.get('/desempeno/detalleGenero')
                 this.detalleGenero= responseDetalleGenero.data;
                 this.porcentajeGenero();
-
+                
                 const responseEstudianteCategoria= await this.$axios.get('/desempeno/estudiantesCategoria')
                 this.estudiantesCategorias= responseEstudianteCategoria.data;
-                console.log(this.estudiantesCategorias)
-
                 // Asignar los valores de género a las propiedades correspondientes
                 const femeninoObj = this.estudiantesPorGenero.find(item => item.Genero === 'Femenino');
                 const masculinoObj = this.estudiantesPorGenero.find(item => item.Genero === 'Masculino');
@@ -555,6 +537,8 @@
                 this.femenino = femeninoObj ? femeninoObj.cantidad : 0;
                 this.masculino = masculinoObj ? masculinoObj.cantidad : 0
                 this.loading = false;
+
+
                 } catch (error) {
                 console.error('Error al obtener datos de estudiantes:', error);
                 }              
@@ -597,8 +581,61 @@
 
                 this.porcentajeFemenino= ((cantidadF/cantidadFemenino)*100).toFixed(2);
                 this.porcentajeMasculino= ((cantidadM/cantidadMasculino)*100).toFixed(2);
-            }
-            
+            },
+            descargarPDF() {
+                const filename = 'dashboardInformativo.pdf';
+                const element = document.querySelector('.reporteGeneral');
+                const options = {
+                scale: 3,
+                useCORS: true,
+                logging: true,
+                };
+
+                const pdf = new jsPDF('l', 'px', [element.offsetWidth, element.offsetHeight]);
+            // Título en mayúsculas y negrita
+            pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(60);
+                    pdf.text('REPORTE GENERAL', pdf.internal.pageSize.getWidth() / 2, 230, {
+                    align: 'center'
+                    });
+
+                    // Restablecemos la fuente a normal para el resto del texto
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(30);
+
+                    // Fecha y hora actual
+                    const fechaHora = new Date().toLocaleString();
+                    pdf.text(`Fecha y hora: ${fechaHora}`, pdf.internal.pageSize.getWidth() / 2,300, {
+                    align: 'center'
+                    });
+
+                    // Descripcion
+                    pdf.text(`Documento generado por personal Administrativo `, pdf.internal.pageSize.getWidth() / 2, 330, {
+                    align: 'center'
+                    });
+
+                    // Descripcion
+                    pdf.text(`El presente documento resumen los datos analizados, cabe presicar que para una mejor visualización utilizar el panel administrativo del sistema `, pdf.internal.pageSize.getWidth() / 2, 360, {
+                    align: 'center'
+                    });
+
+
+                    // Añadir nueva página para el contenido capturado
+                    pdf.addPage();
+
+                    // Capturar el contenido y agregarlo al PDF
+                    html2canvas(element, options).then((canvas) => {
+                        const imgData = canvas.toDataURL('image/png', 1.0);
+
+                        const ratio = pdf.internal.pageSize.getHeight() / canvas.height;
+                        const imgWidth = canvas.width * ratio;
+                        const imgHeight = pdf.internal.pageSize.getHeight();
+
+                        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+                        pdf.save(filename);
+                    });
+                },
         },
         computed: {
             dashArray1() {

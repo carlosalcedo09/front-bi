@@ -899,14 +899,14 @@
     transform: rotate(-90deg);
     width: 125px;
     margin-top: 44px;
-    margin-left: -140px;
+    margin-left: -41px;
 }
 
 .reporteGeneral .vertical-progress2{
     transform: rotate(-90deg);
     width: 125px;
     margin-top: -20px;
-    margin-left: -108px;
+    margin-left: -5px;
 }
 
 .reporteGeneral .vertical-progress3{
@@ -927,7 +927,6 @@
 .reporteGeneral .grlive{
     height: 134px;
     border-bottom: 1px solid #7e7e7e;
-    width: 630px;
     padding-bottom: 0px;
     display: flex;
     padding-top: 0px;
@@ -949,20 +948,30 @@
 }
 
 .reporteGeneral .h{
-    width: 80px;
-    justify-content: center;
-    margin-left: 72px;
+    margin-inline-start: 10px;
+    margin-top: -5px;
+    margin-left: -10px;
+    display:flex;
 }
 
+.reportGeneral .h .ab{
+    margin-left: 10px !important;
+}
 .reporteGeneral .j{
     width: 80px;
     justify-content: center;
-    margin-left: -39px;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 .reporteGeneral .c{
     width: 40px;
     justify-content: center;
+}
+
+.reporteGeneral .especial{
+    width: 20px !important;
+    margin-left: -8px;
 }
 
 .categoria-container {
@@ -972,3 +981,10 @@
 .color1 { stroke: #DD0919; }
 .color2 { stroke: #7e7e7e; }
 .color3 { stroke: #002854; }
+
+.p-spacing {
+    margin-left: 10px;
+    width: 100px;
+    font-size: 13px;
+    text-align: center;
+  }

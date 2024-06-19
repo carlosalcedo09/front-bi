@@ -44,7 +44,7 @@
     padding-bottom: 8px;
     padding-left: 14px;
     padding-right: 33px;
-    padding-top: 4px;
+    padding-top: 15px;
 }
 
 .reportePersonalizado .logo{
@@ -207,8 +207,7 @@
 
 .reportePersonalizado .cajatam3{
     width: 380px;
-    height: 410px;
-    margin-top: 7px;
+    height: 480px;
 }
 
 .reportePersonalizado .cajatam4{
@@ -625,26 +624,25 @@
     height: 160px;
     padding: 0px;
     padding-top: 5px;
-    padding-left: 55px;
+    padding-left: 30px;
 }
 
 .reportePersonalizado .caja1_abcd{
     padding: 0px;
-    width: 166px;
+    width: 173px;
     align-content: center;
-    padding-left: 12px;
 }
 
 .reportePersonalizado .bloque-flex1{
     display: flex;
     padding: 0px;
-    margin-top: 7px;
+    margin-top: 31px;
 }
 
 .reportePersonalizado .bloque-flex2{
     display: flex;
     padding: 0px;
-    margin-top: 4px;
+    margin-top: 23px;
 }
 
 .reportePersonalizado .colum1{

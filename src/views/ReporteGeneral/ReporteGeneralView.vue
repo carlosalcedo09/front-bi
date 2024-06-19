@@ -34,7 +34,9 @@
                         </v-container>
                     </v-container>
 
-                    <v-container class="infoizq1">
+                    <v-container class="infoizq1"
+                        @mouseover="showMessage(0, 'chatbot1')"
+                        @mouseleave="hideMessage('chatbot1')">
                         <v-container class="izqarriba">
                             <v-container class="izqizquierda">
                                 <p class="p1">Promedios</p>
@@ -55,7 +57,9 @@
                         </v-container>
                     </v-container>
 
-                    <v-container class="infoizq2">
+                    <v-container class="infoizq2"
+                        @mouseover="showMessage(1, 'chatbot1')"
+                        @mouseleave="hideMessage('chatbot1')">
                         <v-container class="izqarriba">
                             <v-container class="izqizquierda">
                                 <p class="p1">Promedios</p>
@@ -76,7 +80,9 @@
                         </v-container>
                     </v-container>
 
-                    <v-container class="infoizq3">
+                    <v-container class="infoizq3"
+                        @mouseover="showMessage(2, 'chatbot1')"
+                        @mouseleave="hideMessage('chatbot1')">
                         <v-container class="izqarriba">
                             <v-container class="izqizquierda">
                                 <p>Cursos con menor</p>
@@ -119,14 +125,18 @@
                                 </v-container>
                             </v-container>
                             <v-container class="aba-izq">
-                                <v-container class="infoizq4">
+                                <v-container class="infoizq4"
+                                    @mouseover="showMessage(3, 'chatbot1')"
+                                    @mouseleave="hideMessage('chatbot1')">
                                     <v-container class="izq-4"></v-container>
                                     <v-container class="der-4">
                                         <p class="p10">{{ totalEstudiantes }}</p>
                                         <p class="p11">Estudiantes Totales</p>
                                     </v-container>
                                 </v-container>
-                                <v-container class="infoizq4">
+                                <v-container class="infoizq4"
+                                    @mouseover="showMessage(4, 'chatbot1')"
+                                    @mouseleave="hideMessage('chatbot1')">
                                     <v-container class="izquierda-4">
                                         <v-progress-circular
                                         :model-value="porcentajesNotas14.porcentaje"
@@ -143,7 +153,9 @@
                                         <p class="p14">{{ porcentajesNotas14.cantidad  }}</p>
                                     </v-container>
                                 </v-container>
-                                <v-container class="infoizq4">
+                                <v-container class="infoizq4"
+                                    @mouseover="showMessage(0, 'chatbot2')"
+                                    @mouseleave="hideMessage('chatbot2')">
                                     <v-container class="izquierda-4">
                                         <v-progress-circular
                                         :model-value=" porcentajesNotas18.porcentaje"
@@ -176,7 +188,9 @@
                     </v-container>
                     <v-container  class="cont-abajo">
                         <v-container class="columna1">
-                            <v-container class="caja1">
+                            <v-container class="caja1"
+                                @mouseover="showMessage(5, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-container class="izqarriba">
                                     <v-container class="caja1izq">
                                         <p class="l1">Cantidad de Estudiantes</p>
@@ -206,7 +220,9 @@
                             </v-container>
                         </v-container>
                         <v-container class="columna2">
-                            <v-container class="caja2">
+                            <v-container class="caja2"
+                                @mouseover="showMessage(6, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-container class="izqarriba">
                                     <v-container class="caja1izq">
                                         <p class="l1">Notas no satisfactorias</p>
@@ -239,7 +255,9 @@
                                     </v-container>
                                 </v-container>
                             </v-container>
-                            <v-container class="caja3">
+                            <v-container class="caja3"
+                                @mouseover="showMessage(7, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-container class="izqarriba">
                                     <v-container class="caja1izq">
                                         <p class="l1">Nivel de estudiantes</p>
@@ -291,7 +309,9 @@
                             </v-container>
                         </v-container>
                         <v-container class="columna3">
-                            <v-container class="caja4">
+                            <v-container class="caja4"
+                                @mouseover="showMessage(1, 'chatbot2')"
+                                @mouseleave="hideMessage('chatbot2')">
                                 <v-container class="izqarriba">
                                     <v-container class="caja1izq">
                                         <p class="l1">Consolidados Notas  </p>
@@ -336,7 +356,9 @@
                                 </v-container>
                             </v-container>
                             <v-container class="caja5">
-                                <v-container class="caja6">
+                                <v-container class="caja6"
+                                    @mouseover="showMessage(2, 'chatbot2')"
+                                    @mouseleave="hideMessage('chatbot2')">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
                                             <p class="l1">Cantidad de Estudiante</p>
@@ -366,7 +388,9 @@
                                             </v-container>
                                     </v-container>
                                 </v-container>
-                                <v-container class="caja7">
+                                <v-container class="caja7"
+                                    @mouseover="showMessage(3, 'chatbot2')"
+                                    @mouseleave="hideMessage('chatbot2')">
                                     <v-container class="izqarriba">
                                         <v-container class="caja1izq">
                                             <p class="l1">Relación Total</p>
@@ -433,15 +457,31 @@
 
         </v-container>
 
+        <ChatBot1View
+            v-if="currentMessage1 !== null"
+            :message="containers1[currentMessage1].message"
+            :visible="messageVisible1"
+        />
+
+        <ChatBot2View
+            v-if="currentMessage2 !== null"
+            :message="containers2[currentMessage2].message"
+            :visible="messageVisible2"
+        />
+
     </v-container>
 </template>
 
 <script>
-    import jsPDF from 'jspdf';
-    import html2canvas from 'html2canvas';
-
+    import html2pdf from 'html2pdf.js';
+    import ChatBot1View from '../ChatBot1/ChatBot1View.vue';
+    import ChatBot2View from '../ChatBot2/ChatBot2View.vue';
     export default {
         name: 'ReporteGeneralView',
+        components: {
+            ChatBot1View,
+            ChatBot2View,
+        },
         data(){
             return{
                 totalEstudiantes: '',

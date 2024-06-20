@@ -47,6 +47,9 @@
                     {message: 'Mensaje del chatbot para el Contenedor 1' },
                     {message: 'Mensaje del chatbot para el Contenedor 2' },
                     {message: 'Mensaje del chatbot para el Contenedor 3' },
+                    {message: 'Mensaje del chatbot para el Contenedor 9' },
+                    {message: 'Mensaje del chatbot para el Contenedor 10' },
+                    {message: 'Mensaje del chatbot para el Contenedor 11' },
                 ],
                 containers2: [
                     {message: 'Mensaje del chatbot para el Contenedor 4' },

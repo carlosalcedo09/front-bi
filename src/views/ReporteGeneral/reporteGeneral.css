@@ -44,6 +44,7 @@
     display: flex;
     padding-left: 0px;
     padding-right: 0px;
+    padding-bottom: 5px;
 }
 
 .reporteGeneral .subtitulo1{
@@ -654,7 +655,7 @@
     height: 50px;
     background-color: #002854;
     color: white;
-    margin-top: 8px;
+    margin-top: 15px;
     margin-left: 35px;
 }
 

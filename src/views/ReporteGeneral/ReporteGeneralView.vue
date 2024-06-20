@@ -14,17 +14,23 @@
                         </v-container>
 
                         <v-container class="cajagenero">
-                            <v-container class="btn-generoF">
+                            <v-container class="btn-generoF"
+                                @mouseover="showMessage(8, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-icon left class="icongeneroF">mdi-gender-female</v-icon>{{ femenino}}
                             </v-container>
-                            <v-container class="btn-generoM">
+                            <v-container class="btn-generoM"
+                                @mouseover="showMessage(9, 'chatbot1')"
+                                @mouseleave="hideMessage('chatbot1')">
                                 <v-icon left class="icongeneroM">mdi mdi-gender-male</v-icon>{{ masculino }}
                             </v-container>
                         </v-container>
 
                     </v-container>
 
-                    <v-container class="dataedad">
+                    <v-container class="dataedad"
+                        @mouseover="showMessage(10, 'chatbot1')"
+                        @mouseleave="hideMessage('chatbot1')">
                         <v-container class="subtituloe1">
                             <p class="t1">Nota Promedio</p>
                             <p class="t2">Del Estudiante (0-20)</p>
@@ -180,7 +186,7 @@
                                 <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
                                 PDF
                             </v-btn>
-                            <v-btn class="btn-desc">
+                            <v-btn class="btn-desc" @click="print">
                                 <v-icon left class="iconform">mdi-file-excel-box</v-icon>
                                 EXCEL
                             </v-btn>

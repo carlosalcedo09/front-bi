@@ -89,16 +89,16 @@
                     <v-container class="bloque-flex">
 
                         <v-container class="bloque-izquierda">
-                            <v-container class="caja cajatam1"
-                                @mouseover="showMessage(0, 'chatbot1')"
-                                @mouseleave="hideMessage('chatbot1')">
+                            <v-container class="caja cajatam1">
                                 <v-container class="p0">
                                     <v-progress-circular
                                         :model-value="100"
                                         :rotate="360"
                                         :size="140"
                                         :width="10"
-                                        color="#002854">
+                                        color="#002854"
+                                        @mouseover="showMessage(0, 'chatbot1')"
+                                        @mouseleave="hideMessage('chatbot1')">
                                         <div class="centrartxtcirculo">
                                             <v-icon class="iconcirculo">mdi-account</v-icon>
                                             <p class="txtcirc1">{{ cantidadEstu.cantidadM }}</p>
@@ -113,7 +113,9 @@
                                         :rotate="360"
                                         :size="140"
                                         :width="10"
-                                        color="#002854">
+                                        color="#002854"
+                                        @mouseover="showMessage(3, 'chatbot1')"
+                                        @mouseleave="hideMessage('chatbot1')">
                                         <div class="centrartxtcirculo">
                                             <v-icon class="iconcirculo">mdi mdi-account-tie</v-icon>
                                             <p class="txtcirc1">{{ cantidadProfe.cantidadP }}</p>
@@ -128,7 +130,9 @@
                                         :rotate="360"
                                         :size="140"
                                         :width="10"
-                                        color="#002854">
+                                        color="#002854"
+                                        @mouseover="showMessage(4, 'chatbot1')"
+                                        @mouseleave="hideMessage('chatbot1')">
                                         <div class="centrartxtcirculo">
                                             <v-icon class="iconcirculo">mdi-chart-box-outline</v-icon>
                                             <p class="txtcirc1">{{ cantidadNotas.cantidadN }}</p>
@@ -143,7 +147,9 @@
                                         :rotate="360"
                                         :size="140"
                                         :width="10"
-                                        color="#002854">
+                                        color="#002854"
+                                        @mouseover="showMessage(5, 'chatbot1')"
+                                        @mouseleave="hideMessage('chatbot1')">
                                         <div class="centrartxtcirculo">
                                             <v-icon class="iconcirculo">mdi-star-settings</v-icon>
                                             <p class="txtcirc1">{{promedioGeneral.promedio}}</p>

@@ -3,6 +3,8 @@
     import html2canvas from 'html2canvas';
     import ChatBot1View from '../ChatBot1/ChatBot1View.vue';
     import ChatBot2View from '../ChatBot2/ChatBot2View.vue';
+    import axios from "axios";
+
     export default {
         name: 'ReportePersonalizadoView',
         components: {
@@ -62,6 +64,17 @@
                 messageVisible1: false,
                 currentMessage2: null,
                 messageVisible2: false,
+                respuesta1: '',
+                respuesta2: '',
+                respuesta3: '',
+                respuesta4: '',
+                respuesta5: '',
+                respuesta6: '',
+                respuesta7: '',
+                respuesta8: '',
+                respuesta9: '',
+                respuesta10: '',
+                respuesta11: '',
             }
         },
         created(){
@@ -84,6 +97,8 @@
                     }
                     });
                     this.cursos = response.data;
+                    //Obtener interpretación
+                    this.sendMessage(this.cursos).then((res)=>{this.respuesta11=res}).catch((error)=>error);
                     //Llenar labels
                     const periodosUnicos = [...new Set(this.cursos.map(curso => curso.Periodo))];
                     this.labels= periodosUnicos;
@@ -103,6 +118,7 @@
                         }
                     });
                     this.cursosGenero= response.data;
+                    this.sendMessage(this.cursosGenero).then((res)=>{this.respuesta1=res}).catch((error)=>error);
                     this.llenarArregloGenero();
                               
                     const responseTurno = await this.$axios.get('/desempeno/turnoCurso',{
@@ -111,6 +127,7 @@
                         }
                     });
                     this.cursosTurno= responseTurno.data;
+                    this.sendMessage(this.cursosTurno).then((res)=>{this.respuesta2=res}).catch((error)=>error);
                     this.promedios = this.cursosTurno.map(curso => curso.Promedio);
 
                     const responseUnidad= await this.$axios.get('/desempeno/unidadCurso',{
@@ -119,6 +136,7 @@
                         }
                     });
                     this.cursosUnidad= responseUnidad.data;
+                    this.sendMessage(this.cursosUnidad).then((res)=>{this.respuesta3=res}).catch((error)=>error);
                     this.llenarArregloUnidad();
 
                     const responseProfesores= await this.$axios.get('/desempeno/profesoresCurso',{
@@ -127,6 +145,7 @@
                         }
                     });
                     this.cursosProfesor= responseProfesores.data;
+                    this.sendMessage(this.cursosProfesor).then((res)=>{this.respuesta4=res}).catch((error)=>error);
 
                     const responseTipo= await this.$axios.get('/desempeno/tipoNota',{
                         params: {
@@ -134,6 +153,7 @@
                         }
                     });
                     this.cursosTipo= responseTipo.data;
+                    this.sendMessage(this.cursosTipo).then((res)=>{this.respuesta5=res}).catch((error)=>error);
 
                     const responseAño= await this.$axios.get('/desempeno/anual',{
                         params: {
@@ -141,6 +161,7 @@
                         }
                     });
                     this.añosPromedios= responseAño.data;
+                    this.sendMessage(this.añosPromedios).then((res)=>{this.respuesta6=res}).catch((error)=>error);
                     this.porcentajeAños();
 
                     const responseA= await this.$axios.get('/desempeno/promedioCursoE',{
@@ -149,6 +170,7 @@
                         }
                     });
                     this.promedioGeneral= responseA.data;
+                    this.sendMessage(this.promedioGeneral).then((res)=>{this.respuesta7=res}).catch((error)=>error);
 
                     const responseB = await this.$axios.get('/desempeno/estudiantesCursoE',{
                         params:{
@@ -156,6 +178,7 @@
                         }
                     });
                     this.cantidadEstu= responseB.data;
+                    this.sendMessage(this.cantidadEstu).then((res)=>{this.respuesta8=res}).catch((error)=>error);
 
                     const responseC= await this.$axios.get('/desempeno/profesoresCursoE',{
                         params:{
@@ -163,6 +186,7 @@
                         }
                     });
                     this.cantidadProfe= responseC.data;
+                    this.sendMessage(this.cantidadProfe).then((res)=>{this.respuesta9=res}).catch((error)=>error);
 
                     const responseD= await this.$axios.get('/desempeno/cantidadNotasRegistradas',{
                         params:{
@@ -170,11 +194,13 @@
                         }
                     });
                     this.cantidadNotas= responseD.data;
+                    this.sendMessage(this.cantidadNotas).then((res)=>{this.respuesta10=res}).catch((error)=>error);
 
                 }catch(error){
                     console.error('Error al obtener datos',error)
                 }
             },
+
             llenarArregloGenero(){
                 this.GeneroMasculino = this.cursosGenero.find(curso=>curso.Genero==='Masculino');
                 this.GeneroFemenino = this.cursosGenero.find(cursos=>cursos.Genero==='Femenino');
@@ -297,12 +323,15 @@
                     this.selectedFilter1 = filter1;
                 }
             },
+
             isSelected1(filter1) {
                 return this.selectedFilter1 === filter1;
             },
+
             clearFilters1() {
                  this.selectedFilter1 = null; // Limpiar filtro seleccionado
             },
+
             executeAdditionalFunction(filter1) {
                 this.nombreCursoSeleccionado=filter1
                 if(filter1==='Competencia Comunicativa'){
@@ -321,10 +350,12 @@
 
                 this.cargarDatos();
             },
+
             handleFilterClick1(filter2) {
                 this.toggleFilter2(filter2);
                 this.executeAdditionalFunction1(filter2);
             },
+
             toggleFilter2(filter2) {
                 if (this.selectedFilter2 === filter2) {
                     this.selectedFilter2 = null; 
@@ -332,12 +363,15 @@
                     this.selectedFilter2 = filter2;
                 }
             },
+
             isSelected2(filter2) {
                 return this.selectedFilters2=== filter2;
             },
+
             clearFilters2() {
                 this.selectedFilter2 = null;
             },
+
             executeAdditionalFunction1(filter2) {
                 if(filter2==='2009-2012'){
                     this.añoInicial= 2009;
@@ -363,6 +397,7 @@
                 }
                 this.resumenCursos();
             },
+
             showMessage(index, chatbot) {
                 if (chatbot === 'chatbot1') {
                     this.currentMessage1 = index;
@@ -372,13 +407,59 @@
                     this.messageVisible2 = true;
                 }
             },
+
             hideMessage(chatbot) {
+                this.print();
                 if (chatbot === 'chatbot1') {
                     this.messageVisible1 = false;
                 } else if (chatbot === 'chatbot2') {
                     this.messageVisible2 = false;
                 }
             },
+
+            async sendMessage(arreglo) {
+                if (!Array.isArray(arreglo)) {
+                  try {
+                    let jsonData = JSON.stringify(arreglo);
+                    const res = await axios.post("http://localhost:5000/chatbot", {
+                      message: jsonData,
+                    });
+                    return res.data.response;
+                  } catch (error) {
+                    console.error(error);
+                  }
+                }else {
+                  let data = arreglo.map((item) => ({ ...item }));
+                  let jsonData = JSON.stringify(data);
+                  try {
+                      const res = await axios.post("http://localhost:5000/chatbot", {
+                      message: jsonData,
+                      });
+                      return res.data.response;
+                  } catch (error) {
+                      console.error(error);
+                  }
+                }
+              },
+
+              print(){
+                this.containers1 =[
+                    {message: this.respuesta8 },
+                    {message: this.respuesta5 }, //BIEN
+                    {message: this.respuesta11 },
+                    {message: this.respuesta9 },
+                    {message: this.respuesta10 },
+                    {message: this.respuesta7 }, //BIEN
+                ]
+                this.containers2 =[
+                    {message: this.respuesta6 }, //BIEN
+                    {message: this.respuesta3 }, //BIEN
+                    {message: this.respuesta1 }, //BIEN
+                    {message: this.respuesta2 }, //BIEN
+                    {message: this.respuesta4 }, //BIEN
+                ]
+              },
+        
         },
         computed:{
 

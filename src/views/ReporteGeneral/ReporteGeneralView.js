@@ -46,23 +46,23 @@ export default {
         "P. Lógico",
         "Tutoría I",
       ],
-      containers1: [
-        { message: '' },
-        { message: '' },
-        { message: '' },
-        { message: '' },
-        { message: '' },
-        { message: ''},
-        { message: '' },
-        { message: '' },
-        { message: '' },
-        { message: '' },
-        { message: '' },],
+      containers1: [ 
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },],
       containers2: [
-        { message: "Mensaje del chatbot para el Contenedor 9" },
-        { message: "Mensaje del chatbot para el Contenedor 10" },
-        { message: "Mensaje del chatbot para el Contenedor 11" },
-        { message: "Mensaje del chatbot para el Contenedor 12" },
+        {message: '' },
+        {message: '' },
+        {message: '' },
+        {message: '' },
       ],
       currentMessage1: null,
       messageVisible1: false,
@@ -89,13 +89,37 @@ export default {
   },
   created() {
     this.CargarDatosEstudiantes();
-    this.sendMessage();
   },
   mounted() {},
   methods: {
     irmenu() {
       this.$router.push("/Menu");
     },
+    print(){
+
+      this.containers1 = [
+        { message: this.respuesta2 }, //BIEN
+        { message: this.respuesta2 }, //BIEN
+        { message: this.respuesta3 },  //BIEN
+        { message: this.respuesta4 },  //BIEN
+        { message: this.respuesta5 },  //BIEN
+        { message: this.respuesta9},  //BIEN
+        { message: this.respuesta11 }, //BIEN
+        { message: this.respuesta8 },  //BIEN
+        { message: this.respuesta10 }, //BIEN 
+        { message: this.respuesta10 }, //BIEN
+        { message: this.respuesta1  }, //BIEN 
+      ]
+      
+      this.containers2= [
+        { message: this.respuesta6 },  //BIEN
+        { message: this.respuesta12 },  //BIEN
+        { message: this.respuesta13},
+        { message: this.respuesta7 },  //BIEN 
+      ]
+    
+    },
+    
     async CargarDatosEstudiantes() {
       try {
         const responseTotal = await this.$axios.get(
@@ -103,13 +127,15 @@ export default {
         ); //Total estudiantes
         this.totalEstudiantes = responseTotal.data.Total;
         this.estudiantes = responseTotal.data;
+        this.sendMessage(this.estudiantes).then((res)=>{this.respuesta4=res}).catch((error)=>error);
+
         const responsePromedio = await this.$axios.get(
           "/desempeno/notaPromedio"
         ); //Promedio general
         this.notaPromedio = responsePromedio.data.promedio;
         this.promedioPonderado= responsePromedio.data;
+        this.sendMessage(this.promedioPonderado).then((res)=>{this.respuesta1=res;}).catch((error)=>error);
       
-
         //promedios
         const responsePromedioClas = await this.$axios.get(
           "/estudiantes/clasificacionPromedio"
@@ -117,45 +143,46 @@ export default {
         this.promedioClasificadasS =responsePromedioClas.data.promedioSatisfactorio;
         this.promedioClasificadasR = responsePromedioClas.data.promedioRegular;
         this.promedios= responsePromedioClas.data;
+        this.sendMessage(this.promedios).then((res)=>{this.respuesta2=res}).catch((error)=>error);
        
-
-
         //Cursos
         const responseCursos = await this.$axios.get(
           "/desempeno/cursosPromedio"
         ); //Cursos menor promedio
         this.cursosPonderados = responseCursos.data;
+        this.sendMessage(this.cursosPonderados).then((res)=>{this.respuesta3=res}).catch((error)=>error);
 
         const responsePorcentaje14 = await this.$axios.get(
           "/desempeno/notasMenores14"
         );
         this.porcentajesNotas14 = responsePorcentaje14.data;
+        this.sendMessage(this.porcentajesNotas14).then((res)=>{this.respuesta5=res}).catch((error)=>error);
 
         const responsePorcentaje18 = await this.$axios.get(
           "/desempeno/notasMayores18"
         );
         this.porcentajesNotas18 = responsePorcentaje18.data;
+        this.sendMessage(this.porcentajesNotas18).then((res)=>{this.respuesta6=res}).catch((error)=>error);
 
         const responseEstado = await this.$axios.get(
           "/estudiantes/estudiantesEstado"
         );
         this.estudiantesEstados = responseEstado.data;
-        
-        
+        this.sendMessage(this.estudiantesEstados).then((res)=>{this.respuesta7=res}).catch((error)=>error);
+       
         const responseTurno = await this.$axios.get(
           "/desempeno/estudiantesTurno"
         );
         this.estudiantesTurnos = responseTurno.data;
-       
+        this.sendMessage(this.estudiantesTurnos).then((res)=>{this.respuesta8=res}).catch((error)=>error);
         this.calcularPorcentajeTurno();
-        
 
         const responseDistritos = await this.$axios.get(
           "/estudiantes/estudiantesDistritos"
         );
         this.estudiantesDistritos = responseDistritos.data;
-        
-
+        this.sendMessage(this.estudiantesDistritos).then((res)=>{this.respuesta9=res}).catch((error)=>error);
+  
         const responseConoNorte = await this.$axios.get(
           "/estudiantes/totalConoNorte"
         );
@@ -165,23 +192,26 @@ export default {
           "/desempeno/detalleGenero"
         );
         this.detalleGenero = responseDetalleGenero.data;
-       
+        this.sendMessage(this.detalleGenero).then((res)=>{this.respuesta10=res}).catch((error)=>error);
         this.porcentajeGenero();
 
         const responseGenero = await this.$axios.get(
           "/estudiantes/cantidadPorGenero"
         ); 
         this.estudiantesPorGenero = responseGenero.data;
+        this.sendMessage(this.estudiantesPorGenero).then((res)=>{this.respuesta11=res}).catch((error)=>error);
         
-      
         const responseNotaCursos = await this.$axios.get(
           "/desempeno/cantidadNotasCurso"
         );
         this.notasCursos = responseNotaCursos.data;
-       
+        this.sendMessage(this.notasCursos).then((res)=>{this.respuesta12=res}).catch((error)=>error);
 
-        /*const responseEstudianteCategoria= await this.$axios.get('/desempeno/estudiantesCategoria')
-                this.estudiantesCategorias= responseEstudianteCategoria.data;*/
+        const responseEstudianteCategoria= await this.$axios.get('/desempeno/estudiantesCategoria')
+                this.estudiantesCategorias= responseEstudianteCategoria.data;
+        this.sendMessage(this.estudiantesCategorias).then((res)=>{this.respuesta13=res}).catch((error)=>error);
+
+
         // Asignar los valores de género a las propiedades correspondientes
         const femeninoObj = this.estudiantesPorGenero.find(
           (item) => item.Genero === "Femenino"
@@ -191,34 +221,10 @@ export default {
         );
         this.femenino = femeninoObj ? femeninoObj.cantidad : 0;
         this.masculino = masculinoObj ? masculinoObj.cantidad : 0;
-
         this.loading = false;
       } catch (error) {
         console.error("Error al obtener datos de estudiantes:", error);
       }
-    },
-
-    
-
-    
-    llenandoRespuestas(){
-      this.containers1 = [
-        { message: this.respuesta1 },
-        { message: this.respuesta2 },
-        { message: this.respuesta3 },
-        { message: this.respuesta4 },
-        { message: this.respuesta5 },
-        { message: this.respuesta6},
-        { message: this.respuesta7 },
-        { message: this.respuesta8 },
-        { message: this.respuesta13 },
-        { message: this.respuesta14 },
-        { message: this.respuesta15 },
-      ]
-      console.log(this.containers1);
-    },
-    print(){
-      console.log(this.respuesta4)
     },
 
     calcularPorcentaje() {
@@ -233,6 +239,7 @@ export default {
         this.porcentajeV = 0;
       }
     },
+
     capitalizeFirstLetter(string) {
       return string
         .toLowerCase()
@@ -240,6 +247,7 @@ export default {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
     },
+
     calcularPorcentajeTurno() {
       const cantidadTurnoManana = (
         this.estudiantesTurnos.find((turno) => turno.Turno === "Mañana") || {
@@ -261,6 +269,7 @@ export default {
       this.porcentajeT = ((cantidadTurnoTarde / 1024) * 100).toFixed(2);
       this.porcentajeN = ((cantidadTurnoNoche / 1024) * 100).toFixed(2);
     },
+
     porcentajeGenero() {
       const cantidadFemenino = (
         this.detalleGenero.find((genero) => genero.Genero === "Femenino") || {
@@ -291,6 +300,7 @@ export default {
         100
       ).toFixed(2);
     },
+
     descargarPDF() {
       const filename = "dashboardInformativo.pdf";
       const element = document.querySelector(".reporteGeneral");
@@ -363,6 +373,7 @@ export default {
       });
     },
     showMessage(index, chatbot) {
+      this.print();
       if (chatbot === "chatbot1") {
         this.currentMessage1 = index;
         this.messageVisible1 = true;
@@ -379,34 +390,31 @@ export default {
         this.messageVisible2 = false;
       }
     },
-    async sendMessage() {
-      this.arreglo= this.estudiantes;
-      if (!Array.isArray(this.arreglo)) {
+    async sendMessage(arreglo) {
+      if (!Array.isArray(arreglo)) {
         try {
-          let jsonData = JSON.stringify(this.arreglo);
+          let jsonData = JSON.stringify(arreglo);
           const res = await axios.post("http://localhost:5000/chatbot", {
             message: jsonData,
           });
-          this.respuesta4=res.data.response;
           return res.data.response;
         } catch (error) {
           console.error(error);
         }
       }else {
-        let data = this.arreglo.map((item) => ({ ...item }));
+        let data = arreglo.map((item) => ({ ...item }));
         let jsonData = JSON.stringify(data);
         try {
             const res = await axios.post("http://localhost:5000/chatbot", {
             message: jsonData,
             });
-            this.respuesta4=res.data.response;
             return res.data.response;
         } catch (error) {
             console.error(error);
         }
       }
-
     },
+    
   },
   computed: {
     dashArray1() {

@@ -89,7 +89,6 @@ export default {
   },
   created() {
     this.CargarDatosEstudiantes();
-    this.sendMessage();
   },
   mounted() {},
   methods: {
@@ -218,7 +217,7 @@ export default {
       console.log(this.containers1);
     },
     print(){
-      console.log(this.respuesta4)
+      this.sendMessage();
     },
 
     calcularPorcentaje() {
@@ -388,6 +387,7 @@ export default {
             message: jsonData,
           });
           this.respuesta4=res.data.response;
+          console.log(this.respuesta4);
           return res.data.response;
         } catch (error) {
           console.error(error);
@@ -400,6 +400,7 @@ export default {
             message: jsonData,
             });
             this.respuesta4=res.data.response;
+            console.log(this.respuesta4);
             return res.data.response;
         } catch (error) {
             console.error(error);

@@ -84,10 +84,8 @@
                     }
                     });
                     this.cursos = response.data;
-                    //Llenar labels
                     const periodosUnicos = [...new Set(this.cursos.map(curso => curso.Periodo))];
                     this.labels= periodosUnicos;
-                    //Llenar values
                     const valoresPorCurso = this.obtenerValoresPorCurso(this.cursos);
                     this.values= valoresPorCurso;
                 } catch (error) {
@@ -104,7 +102,6 @@
                     });
                     this.cursosGenero= response.data;
                     this.llenarArregloGenero();
-                              
                     const responseTurno = await this.$axios.get('/desempeno/turnoCurso',{
                         params:{
                             idCurso: this.idCurso,
@@ -187,20 +184,20 @@
             },
 
             porcentajeAños(){
-               const por2009= (this.añosPromedios.find(año=>año.year===2009));
-               const por2010= (this.añosPromedios.find(año=>año.year===2010));
-               const por2011= (this.añosPromedios.find(año=>año.year===2011));
-               const por2021= (this.añosPromedios.find(año=>año.year===2021));
-               const por2022= (this.añosPromedios.find(año=>año.year===2022));
-               const por2023= (this.añosPromedios.find(año=>año.year===2023));
-               
-               this.porcentajeC1=[por2009.Porcentaje,por2010.Porcentaje,por2011.Porcentaje,por2021.Porcentaje,por2022.Porcentaje,por2023.Porcentaje];
-               this.labelsC1=[por2009.Notas+ ' notas en ' +por2009.year,
-                            por2010.Notas+ ' notas en ' +por2010.year,
-                            por2011.Notas+ ' notas en ' +por2011.year,
-                            por2021.Notas+ ' notas en ' +por2021.year,
-                            por2022.Notas+ ' notas en ' +por2022.year,
-                            por2023.Notas+ ' notas en ' +por2023.year ]
+                const por2009= (this.añosPromedios.find(año=>año.year===2009));
+                const por2010= (this.añosPromedios.find(año=>año.year===2010));
+                const por2011= (this.añosPromedios.find(año=>año.year===2011));
+                const por2021= (this.añosPromedios.find(año=>año.year===2021));
+                const por2022= (this.añosPromedios.find(año=>año.year===2022));
+                const por2023= (this.añosPromedios.find(año=>año.year===2023));
+                
+                this.porcentajeC1=[por2009.Porcentaje,por2010.Porcentaje,por2011.Porcentaje,por2021.Porcentaje,por2022.Porcentaje,por2023.Porcentaje];
+                this.labelsC1=[por2009.Notas+ ' notas en ' +por2009.year,
+                                por2010.Notas+ ' notas en ' +por2010.year,
+                                por2011.Notas+ ' notas en ' +por2011.year,
+                                por2021.Notas+ ' notas en ' +por2021.year,
+                                por2022.Notas+ ' notas en ' +por2022.year,
+                                por2023.Notas+ ' notas en ' +por2023.year ]
             },
             
             obtenerValoresPorCurso(cursos) {

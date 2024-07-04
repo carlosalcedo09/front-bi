@@ -50,6 +50,9 @@ export default {
         irReportePersonalizado() {
             this.$router.push("/ReportePersonalizado");
         },
+        irInfoEstudiante() {
+            this.$router.push("/InfoEstudiante");
+        },
         expandImage(index) {
             this.expandedImage = index;
         },

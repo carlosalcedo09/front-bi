@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
     name: 'LoginView',
     data(){
@@ -8,7 +10,9 @@ export default {
             mensaje: "",
             typemsg: "error",
             dialogError: false,
+            dialogProce: false,
             showPassword: false,
+            message:'',
         }
     },
     created(){
@@ -21,6 +25,14 @@ export default {
         obtenerUsuario(){
             this.$axios.get("/usuarios").then((res)=>{this.usuarios=res.data}).catch((error)=>error)
         },
+        async runETL() {
+            try {
+                await axios.get('http://localhost:5000/run_etl_process').then((res)=>{this.message=res.data.message});
+              } catch (error) {
+                this.message = 'Error al ejecutar ETL';
+            }
+        },
+
         async iniciarSesion(){
             if(this.username==="" || this.password===""){
                 this.mensaje= "Faltan completar los campos de inicio de Sesión, por favor completelos.";
@@ -34,9 +46,19 @@ export default {
                     password: this.password,
                 });
                 if(response.data.message === 'Autenticación exitosa'){
-                    this.irmenu();
+                    this.mensaje='Ejecutando, el proceso de ETL, el periodo en que se esta procesando los datos es de 2009 a 2023, por favor esperar un momento'
+                    this.dialogProce= true;
+
+                    await this.runETL(); 
+                    if(this.message==='Proceso ETL ejecutado exitosamente'){
+                        this.mensaje='Proceso exitoso, se ha ejecutado correctamente el ETL en el periodo señalado';
+                    }else{
+                        this.mensaje='Error'
+                    }
+                    this.dialogProce= false;
                     const usuarioE= this.usuarios.find(usuario=> usuario.username===this.username && usuario.password===this.password);
                     localStorage.setItem('IdPersonal', usuarioE.IdPersonal);
+                    this.irmenu()
                 }
             }catch(error){
                 if(error.response && error.response.status===401){

@@ -8,6 +8,7 @@ export default {
                 username: "",
                 password: "",
                 correo:"",
+                codigoVerificacion:""
             },
             nombresP: "",
             apellidosP: "",
@@ -92,59 +93,68 @@ export default {
                 this.typemsg = "error";
                 this.dialogError = true;
                 return;
-            }
+            }else{
+                this.usuario.correo=this.personal.correo;
+                // Verificación de que las contraseñas coinciden
+                if (this.usuario.password !== this.confirmPassword) {
+                    this.typemsg = "error";
+                    this.mensaje = "Verifique la contraseña y su confirmación";
+                    this.dialogError = true;
+                    // Limpiando los campos de contraseña
+                    this.usuario.password = '';
+                    this.confirmPassword = '';
+                    return;
+                }else{
+                    try {
+                        
+                        // Consultando existencia de usuario por su código
+                        const response = await this.$axios.get("/usuarios/"+ this.usuario.IdPersonal);
+                        console.log(response.data);
+                        if (response.message==='User not found') {
+                        this.mensaje = "El personal con Código: " + this.usuario.IdPersonal + " ya está registrado, no podemos asignarle otro usuario.";
+                        this.typemsg = "error";
+                        this.dialogError = true;
+                        this.limpiar();
+                        return;
+                        
+                        }else{
+                            try {
+                                // Obteniendo el valor del último id
+                                const usersResponse = await this.$axios.get('/usuarios');
+                                const usuarios = usersResponse.data;
+                                let ultimoID = 0;
+                                if (usuarios.length > 0) {
+                                ultimoID = usuarios.sort((a, b) => b.id - a.id)[0].id;
+                                }
+                
+                                // Asignando el siguiente ID
+                                this.usuario.id = ultimoID + 1;
+                
+                                // Grabando usuario
+                                const saveResponse = await this.$axios.post("/usuarios", this.usuario);
+                                this.mensaje = "El registro ha sido completado con éxito";
+                                this.typemsg = "success";
+                                this.dialogExit = true;
+                                this.limpiar();
+                            } catch (error) {
+                                console.error("Error al obtener los usuarios o al guardar el nuevo usuario:", error);
+                                this.mensaje = "Error durante el registro del usuario.";
+                                this.typemsg = "error";
+                                this.dialogError = true;
+                            }
+                        }
 
-            // Verificación de que las contraseñas coinciden
-            if (this.usuario.password !== this.confirmPassword) {
-                this.typemsg = "error";
-                this.mensaje = "Verifique la contraseña y su confirmación";
-                this.dialogError = true;
-                // Limpiando los campos de contraseña
-                this.usuario.password = '';
-                this.confirmPassword = '';
-                return;
-            }
-
-            try {
-                // Consultando existencia de usuario por su código
-                const response = await this.$axios.get("/usuarios/"+ this.usuario.IdPersonal);
-                if (!response.data) {
-                this.mensaje = "El personal con Código: " + this.usuario.IdPersonal + " ya está registrado, no podemos asignarle otro usuario.";
-                this.typemsg = "error";
-                this.dialogError = true;
-                this.limpiar();
-                return;
+                    } catch (error) {
+                        console.error("Error al verificar la existencia del usuario:", error);
+                    }
                 }
-            } catch (error) {
-                console.error("Error al verificar la existencia del usuario:", error);
+
+
             }
 
-            try {
-                // Obteniendo el valor del último id
-                const usersResponse = await this.$axios.get('/usuarios');
-                const usuarios = usersResponse.data;
-                let ultimoID = 0;
-                if (usuarios.length > 0) {
-                ultimoID = usuarios.sort((a, b) => b.id - a.id)[0].id;
-                }
-                console.log("Último ID de usuario:", ultimoID);
+            
 
-                // Asignando el siguiente ID
-                this.usuario.id = ultimoID + 1;
-
-                // Grabando usuario
-                const saveResponse = await this.$axios.post("/usuarios", this.usuario);
-                console.log(saveResponse);
-                this.mensaje = "El registro ha sido completado con éxito";
-                this.typemsg = "success";
-                this.dialogExit = true;
-                this.limpiar();
-            } catch (error) {
-                console.error("Error al obtener los usuarios o al guardar el nuevo usuario:", error);
-                this.mensaje = "Error durante el registro del usuario.";
-                this.typemsg = "error";
-                this.dialogError = true;
-            }
+        
         },
         
         limpiar(){

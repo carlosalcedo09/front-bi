@@ -44,6 +44,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ReportePersonalizado/ReportePersonalizadoView.vue'),
     meta: { requiresAuth: true }
   },
+  {
+    path: '/InfoEstudiante',
+    name: 'InfoEstudianteView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/InfoEstudiante/InfoEstudianteView.vue'),
+    /*meta: { requiresAuth: true }*/
+  },
 ];
 
 const router = createRouter({

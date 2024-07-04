@@ -26,7 +26,7 @@
     background-blend-mode: multiply;
     background-size: cover;
     display: flex;
-    padding: 238px;
+    padding: 64px;
 }
 
 .menu_css .m_abajo{
@@ -232,6 +232,13 @@
 
 .menu_css .iconopers{
     background-image: url('../../components/img/f2.png');
+    background-size: cover;
+    width: 234px;
+    height: 216px;
+}
+
+.menu_css .iconoest{
+    background-image: url('../../components/img/f3.png');
     background-size: cover;
     width: 234px;
     height: 216px;

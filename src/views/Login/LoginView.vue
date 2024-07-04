@@ -81,6 +81,22 @@
 
         </v-card>
     </v-dialog>
+    <v-dialog v-model="dialogProce" :width="500">
+        <v-card color="#033076">
+            <v-card-title>
+                <span class="mx-autoR">Procesando ...</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                    v-if="mensaje !== ''"
+                    color="#033076"
+                    :type="typemsg"
+                    outlined>
+                    {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
 </template>
 
 <script>

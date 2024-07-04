@@ -186,10 +186,6 @@
                                 <v-icon left class="iconform">mdi-file-pdf-box</v-icon>
                                 PDF
                             </v-btn>
-                            <v-btn class="btn-desc" @click="print">
-                                <v-icon left class="iconform">mdi-file-excel-box</v-icon>
-                                EXCEL
-                            </v-btn>
                         </v-container>
                     </v-container>
                     <v-container  class="cont-abajo">
@@ -276,10 +272,10 @@
                                 <v-container class="cont_1">
                                     <v-container class="cont_2">
                                         <v-container class="c2_1">
-                                           <p  v-for="(estudiante, index) in estudiantesTurnos" :key="index" :class="'l' + (8 + index)">{{ estudiante.cantidadEstudiantes }}</p>
+                                            <p  v-for="(estudiante, index) in estudiantesTurnos" :key="index" :class="'l' + (8 + index)">{{ estudiante.cantidadEstudiantes }}</p>
                                         </v-container>
                                         <v-container class="c2_2">
-                                          <p class="l11" v-for="(estudiante, index) in estudiantesTurnos" :key="index">{{ estudiante.Turno }}</p>
+                                            <p class="l11" v-for="(estudiante, index) in estudiantesTurnos" :key="index">{{ estudiante.Turno }}</p>
                                         </v-container>
                                     </v-container>
                                     <v-container class="grafica3">
@@ -324,8 +320,8 @@
                                         <p class="l2">Por  Asignatura</p>
                                     </v-container>
                                     <v-container class="caja1der_1">
-                                        <p class="genF">Satistactorios</p>
-                                        <p class="genM">No Satisfactorias</p>
+                                        <p class="genF">No Satistactorios</p>
+                                        <p class="genM">Satisfactorias</p>
                                         <v-icon right>mdi-star-outline</v-icon>
                                     </v-container>
                                 </v-container>
@@ -375,7 +371,7 @@
                                         </v-container>
                                     </v-container>
                                     <v-container class="cont_2">
-                                           <!-- Categorías -->
+                                            <!-- Categorías -->
                                             <v-container class="espacio">
                                                 <v-container v-for="(categoria, index) in estudiantesCategorias" :key="index" class="especialA">
                                                     <p class="m1">{{ categoria.Categoria }}</p>

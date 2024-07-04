@@ -16,41 +16,41 @@ export default {
                 { id: 9, name: 'Ciclo 9' },
                 { id: 10, name: 'Ciclo 10' },
             ],
-            selectedCurso: null,
+            selectedCurso: 1,
             cursos: [
-                { id: 1, name: 'Curso 1' },
-                { id: 2, name: 'Curso 2' },
-                { id: 3, name: 'Curso 3' }
+                { id: 1, name: 'Competencia Comunicativa' },
+                { id: 2, name: 'Fundamentos Programación' },
+                { id: 3, name: 'Introducción Ingeniería' },
+                { id: 4, name: 'Matemática I'},
+                { id: 5, name: 'Pensamiento Lógico'},
+                { id: 6, name: 'Tutoría I'}
             ],
             estudiantes: [
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-                { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
-                { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
-                { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
+               
             ],
-            selectedSemestre: null,
+            selectedSemestre: 18,
             semestres: [
-                { id: 1, name: 'Semestre 1' },
-                { id: 2, name: 'Semestre 2' },
-                { id: 3, name: 'Semestre 3' }
+                { id: 1, name: '2015-I'},
+                { id: 2, name: '2015-II'},
+                { id: 3, name: '2016-I' },
+                { id: 4, name: '2016-II'},
+                { id: 5, name: '2017-I'},
+                { id: 6, name: '2017-II'},
+                { id: 7, name: '2018-I'},
+                { id: 8, name: '2018-II'},
+                { id: 9, name: '2019-I'},
+                { id: 10, name: '2019-II'},
+                { id: 11, name: '2020-I'},
+                { id: 12, name: '2020-II'},
+                { id: 13, name: '2021-I'},
+                { id: 14, name: '2021-II'},
+                { id: 15, name: '2022-I'},
+                { id: 16, name: '2022-II'},
+                { id: 17, name: '2023-I'},
+                { id: 18, name: '2023-II'},
+                
             ],
+            estudiantes1:[],
         };
     },
 
@@ -59,8 +59,20 @@ export default {
             this.selectedCiclo = this.ciclos[0].id;
         }
     },
-
+    created(){
+        this.cargarDatos();
+    },
     methods: {
+        async cargarDatos(){
+            const responseEstudiantes = await this.$axios.get('/desempeno/estudiantesCursosSemestre',{
+                params:{
+                    idCurso: 'GPDG102',
+                    semestre: '2023-I'
+                }
+            });
+            this.estudiantes= responseEstudiantes.data;
+            console.log(this.estudiantes1);
+        },
         irmenu(){
             this.$router.push("/Menu");
         },

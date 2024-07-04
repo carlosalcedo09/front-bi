@@ -28,7 +28,7 @@ export default {
         async runETL() {
             try {
                 await axios.get('http://localhost:5000/run_etl_process').then((res)=>{this.message=res.data.message});
-              } catch (error) {
+            } catch (error) {
                 this.message = 'Error al ejecutar ETL';
             }
         },

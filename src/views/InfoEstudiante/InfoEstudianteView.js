@@ -44,7 +44,13 @@ export default {
                 { codigo: '001', nombre: 'Juan Pérez', dni: '12345678', genero: 'Masculino', distrito: 'Lima' },
                 { codigo: '002', nombre: 'María Rodríguez', dni: '87654321', genero: 'Femenino', distrito: 'Arequipa' },
                 { codigo: '003', nombre: 'Carlos García', dni: '56789012', genero: 'Masculino', distrito: 'Cusco' },
-            ]
+            ],
+            selectedSemestre: null,
+            semestres: [
+                { id: 1, name: 'Semestre 1' },
+                { id: 2, name: 'Semestre 2' },
+                { id: 3, name: 'Semestre 3' }
+            ],
         };
     },
 
@@ -55,6 +61,12 @@ export default {
     },
 
     methods: {
-
+        irmenu(){
+            this.$router.push("/Menu");
+        },
+        borrarFiltro() {
+            this.selectedCurso = null;
+            this.selectedSemestre = null;
+        }
     },
 };

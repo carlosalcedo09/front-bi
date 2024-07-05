@@ -17,12 +17,12 @@
                             <option v-for="(ciclo, index) in ciclos" :key="index" :value="ciclo.id" disabled>{{ ciclo.name }}</option>
                         </select>
                         <p class="p3">Curso:</p>
-                        <select v-model="selectedCurso" class="cbxCurso">
-                            <option v-for="(curso, index) in cursos" :key="index" :value="curso.id">{{ curso.name }}</option>
+                        <select v-model="selectedCurso" class="cbxCurso" @change="filtrar">
+                            <option v-for="(curso, index) in cursos" :key="index" :value="curso.name">{{ curso.name }}</option>
                         </select>
                         <p class="p3">Semestre Académico:</p>
-                        <select v-model="selectedSemestre" class="cbxCiclo">
-                            <option v-for="(semestre, index) in semestres" :key="index" :value="semestre.id">{{ semestre.name }}</option>
+                        <select v-model="selectedSemestre" class="cbxCiclo" @change="filtrar">
+                            <option v-for="(semestre, index) in semestres" :key="index" :value="semestre.name">{{ semestre.name }}</option>
                         </select>
                         <v-btn class="btnO" @click="borrarFiltro"><span class="mdi mdi-broom iconoO"></span></v-btn>
                         <v-btn class="btnO" @click="irmenu"><span class="mdi mdi-arrow-left iconoO"></span></v-btn>
@@ -42,11 +42,11 @@
                             <tbody>
                                 <tr v-for="(estudiante, index) in estudiantes" :key="index">
                                     <td>{{ estudiante.codigo }}</td>
-                                    <td>{{ estudiante.nombre }}</td>
+                                    <td>{{ estudiante.e_nombresE+ ' '+estudiante.e_apellidosE }}</td>
                                     <td>{{ estudiante.dni }}</td>
                                     <td>{{ estudiante.genero }}</td>
                                     <td>{{ estudiante.distrito }}</td>
-                                    <td><i class="mdi mdi-eye iconojo"></i></td>
+                                    <td><i class="mdi mdi-eye iconojo" @click="verDetalles(index)"></i></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -55,7 +55,7 @@
                 <v-container class="cajader">
                     <v-container>
                         <p class="tit1">Detalle de Notas de</p>
-                        <p class="tit2">Progrmación de Aplicaciones Móviles</p>
+                        <p class="tit2">{{selectedCurso}}</p>
                     </v-container>
                     <v-container class="igual">
                         <v-container class="der1">
@@ -64,67 +64,25 @@
                         <v-container class="der2">
                             <v-container class="cp1">
                                 <p class="txt1">Nombre:</p>
-                                <p class="txt2">Carlos Jose Alcedo Javier</p>
+                                <p class="txt2">{{ nombresEstudiante }}</p>
                             </v-container>
                             <v-container class="cp1">
                                 <p class="txt1">Carrera:</p>
-                                <p class="txt2">Ingeniería de Sistemas</p>
+                                <p class="txt2">{{ carrera }}</p>
                             </v-container>
                             <v-container class="cp1">
                                 <p class="txt1">Ciclo:</p>
-                                <p class="txt2">1</p>
+                                <p class="txt2">{{ciclo }}</p>
                             </v-container>
                         </v-container>
                     </v-container>
                     <v-container class="der3">
-                        <v-container class="card1">
-                            <p class="cardtit">Unidad 1</p>
+                        <v-container class="card1" v-for="unidad in unidades" :key="unidad.id">
+                            <p class="cardtit">{{ unidad.titulo }}</p>
                             <v-container class="flexcard">
-                                <v-container class="cuadrado">
-                                    <p class="m1">Investigación Formativa</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                                <v-container class="cuadrado">
-                                    <p class="m1">Examen Parcial</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                                <v-container class="cuadrado">
-                                    <p class="m1">Práctica Calificada</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                            </v-container>
-                        </v-container>
-                        <v-container class="card1">
-                            <p class="cardtit">Unidad 2</p>
-                            <v-container class="flexcard">
-                                <v-container class="cuadrado">
-                                    <p class="m1">Investigación Formativa</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                                <v-container class="cuadrado">
-                                    <p class="m1">Examen Parcial</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                                <v-container class="cuadrado">
-                                    <p class="m1">Práctica Calificada</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                            </v-container>
-                        </v-container>
-                        <v-container class="card1">
-                            <p class="cardtit">Unidad 3</p>
-                            <v-container class="flexcard">
-                                <v-container class="cuadrado">
-                                    <p class="m1">Investigación Formativa</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                                <v-container class="cuadrado">
-                                    <p class="m1">Examen Parcial</p>
-                                    <p class="m2">15</p>
-                                </v-container>
-                                <v-container class="cuadrado">
-                                    <p class="m1">Práctica Calificada</p>
-                                    <p class="m2">15</p>
+                                <v-container class="cuadrado" v-for="nota in unidad.notas" :key="nota.idTipo">
+                                    <p class="m1">{{ nota.tipo }}</p>
+                                    <p class="m2">{{ nota.nota }}</p>
                                 </v-container>
                             </v-container>
                         </v-container>
@@ -134,12 +92,16 @@
                             <p class="cardtit1">Resumen</p>
                             <p class="cardcont1">- La unidad con menor promedio es: </p>
                             <v-container class="flexcard1">
-                                <p class="u1">Unidad 1</p>
+                                <p class="u1"> {{unidadMenor}}</p>
                                 <span class="mdi mdi-arrow-right-bold iconflecha"></span>
-                                <p class="u2">18</p>
+                                <p class="u2">{{ promedioMenor }}</p>
                             </v-container>
                             <p class="cardcont1">- Debe mejorar sus calificaciones en el área de: </p>
-                            <p class="u3">PC o INF o EP</p>
+                            <v-container class="flexcard1">
+                                <p class="u1"> {{ area.tipo }}</p>
+                                <span class="mdi mdi-arrow-right-bold iconflecha"></span>
+                                <p class="u2">{{ area.promedio }}</p>
+                            </v-container>
                         </v-container>
                     </v-container>
                 </v-container>

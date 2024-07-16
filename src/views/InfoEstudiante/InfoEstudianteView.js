@@ -109,7 +109,7 @@ export default {
             this.carrera='Ingeniería de Sistemas'
             this.ciclo=1;
             this.nombresEstudiante= estudianteSeleccionado.e_nombresE + ' '+estudianteSeleccionado.e_apellidosE;
-           
+            
             try {
                 const responseDetalle = await this.$axios.get('/desempeno/detalleNotaEstudiante', {
                     params: {
